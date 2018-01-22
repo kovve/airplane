@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="gameEndSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="1607c5a4d5e"/>
+	<e:Group horizontalCenter="-5.5" verticalCenter="26">
+		<e:Label text="本次得分" x="257.17" y="-1.65" textColor="0xddddde" size="36" fontFamily="SimHei"/>
+		<e:Image id="restartBtn" source="againBtn_png" x="193" y="831.1"/>
+		<e:Image source="rankbody_png" x="2" y="300.62"/>
+		<e:Label text="排行榜" x="72" y="366.62" size="24" fontFamily="SimHei" textColor="0xDDDDDE"/>
+		<e:Image source="titlepng_png" x="56.5" y="0"/>
+		<e:BitmapLabel id="myscore" width="245.33" height="64.04" y="117.46" anchorOffsetX="0" anchorOffsetY="0" text="0" font="ziti_fnt" rotation="359.52" scaleX="1" scaleY="1" horizontalCenter="3.5" textAlign="center" letterSpacing="6"/>
+		<e:Label id="topScore" text="历史最高分：0" size="30" fontFamily="SimHei" x="217" y="760.77"/>
+		<e:Group id="subGroup" width="590" height="262" x="30" y="400" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Label id="notIngameText" text="只有在App中登陆，才能获得排名和奖励哦，快去下载App然后登陆吧！" x="40" y="42" size="36" fontFamily="SimHei" textColor="0xDDDDDE" anchorOffsetY="0" height="172" anchorOffsetX="0" width="510" verticalAlign="middle" textAlign="center" scaleX="1" scaleY="1"/>
+		</e:Group>
+		<e:Label id="allRank" text="查看全部排行>" x="438" y="356.62" size="24" fontFamily="SimHei" textColor="0xDDDDDE"/>
+	</e:Group>
+	<e:Image id="closeBtn" source="closeBtn_png" right="36" top="84"/>
+</e:Skin>

@@ -1,5 +1,17 @@
 {
   "skins": {},
   "autoGenerateExmlsList": true,
-  "exmls": []
+  "exmls": [
+    "resource/eui_skins/ButtonSkin.exml",
+    "resource/eui_skins/EndRankItemSkin.exml",
+    "resource/eui_skins/GameEndSkin.exml",
+    "resource/eui_skins/GameInfo.exml",
+    "resource/eui_skins/GameStartSkin.exml",
+    "resource/eui_skins/ItemRendererSkin.exml",
+    "resource/eui_skins/RankListItem.exml",
+    "resource/eui_skins/RankPanel.exml",
+    "resource/eui_skins/RewardsSkin.exml",
+    "resource/eui_skins/UninAppNotic.exml",
+    "resource/eui_skins/startButtonSkin.exml"
+  ]
 }

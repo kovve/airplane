@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="RankListItemSkin" width="660" height="120" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="160a06e27c6" ></w:Config>
+	<e:Rect width="660" height="120" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" fillColor="0x152139" fillAlpha="0.6"/>
+	<e:Rect width="86" height="86" x="94" y="18" anchorOffsetX="0" anchorOffsetY="0" ellipseWidth="0" ellipseHeight="0" fillColor="0x000000"/>
+	<e:Label id="order" x="20.01" y="43.32" size="36" fontFamily="SimHei" bold="true" textAlign="left" text=""/>
+	<e:Label x="200.31" y="41.4" size="36" fontFamily="SimHei" text="{data.userName}"/>
+	<e:Label x="377.03" y="25.32" size="72" fontFamily="SimHei" textAlign="right" anchorOffsetX="0" width="253.33" text="{data.userScore}"/>
+	<e:Image id="userPic" width="86" height="86" x="94" y="18"/>
+</e:Skin>
