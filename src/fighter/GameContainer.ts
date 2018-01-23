@@ -1,9 +1,11 @@
 module fighter
 {
+    import BaseView = component.BaseView;
+
     /**
      * 主游戏容器
      */
-    export class GameContainer extends egret.DisplayObjectContainer
+    export class GameContainer extends BaseView
     {
         /**@private*/
         private stageW:number;
@@ -12,7 +14,7 @@ module fighter
         /**开始按钮*/
         private btnStart;
         /**可滚动背景*/
-        private bg:fighter.BgMap;
+        private map:fighter.BgMap;
         /**我的飞机*/
         private myFighter:fighter.Airplane;
         /**我的子弹*/
@@ -31,32 +33,31 @@ module fighter
         private _lastTime:number;
 
         public constructor() {
+
             super();
+            this.fullScreen = true;
             this._lastTime = egret.getTimer();
-            this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
+            // this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
         }
-        /**初始化*/
-        private onAddToStage(event:egret.Event){
-            this.removeEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
-            this.createGameScene();
-        }
+
         /**创建游戏场景*/
-        private createGameScene():void{
-            this.stageW = this.stage.stageWidth;
-            this.stageH = this.stage.stageHeight;
+        public show():void{
+            super.show();
+            this.stageW = Layout.getInstance().stage.stageWidth;
+            this.stageH = Layout.getInstance().stage.stageHeight;
             //背景
-            this.bg = new fighter.BgMap();//创建可滚动的背景
-            this.addChild(this.bg);
+            this.map = new fighter.BgMap();//创建可滚动的背景
+            this.addChild(this.map);
             //开始按钮
             //开始按钮
-            this.btnStart =.createBitmapByName("btnStart");//开始按钮
+            this.btnStart =utils.createBitmapByName("btn_start_png");//开始按钮
             this.btnStart.x = (this.stageW - this.btnStart.width) / 2;//居中定位
             this.btnStart.y = (this.stageH - this.btnStart.height) / 2;//居中定位
             this.btnStart.touchEnabled = true;//开启触碰
             this.btnStart.addEventListener(egret.TouchEvent.TOUCH_TAP,this.gameStart,this);//点击按钮开始游戏
             this.addChild(this.btnStart);
             //我的飞机
-            this.myFighter = new fighter.Airplane(RES.getRes("f1"),100,"f1");
+            this.myFighter = new fighter.Airplane(RES.getRes("f1_png"),100,"f1_png");
             this.myFighter.y = this.stageH-this.myFighter.height-50;
             this.addChild(this.myFighter);
             this.scorePanel = new fighter.ScorePanel();
@@ -68,7 +69,7 @@ module fighter
             var i:number = 0;
             var objArr:any[] = [];
             for(i=0;i<20;i++) {
-                var bullet = fighter.Bullet.produce("b1");
+                var bullet = fighter.Bullet.produce("b1_png");
                 objArr.push(bullet);
             }
             for(i=0;i<20;i++) {
@@ -76,7 +77,7 @@ module fighter
                 fighter.Bullet.reclaim(bullet);
             }
             for(i=0;i<20;i++) {
-                var bullet = fighter.Bullet.produce("b2");
+                var bullet = fighter.Bullet.produce("b2_png");
                 objArr.push(bullet);
             }
             for(i=0;i<20;i++) {
@@ -84,7 +85,7 @@ module fighter
                 fighter.Bullet.reclaim(bullet);
             }
             for(i=0;i<20;i++) {
-                var enemyFighter:fighter.Airplane = fighter.Airplane.produce("f2",1000);
+                var enemyFighter:fighter.Airplane = fighter.Airplane.produce("f2_png",1000);
                 objArr.push(enemyFighter);
             }
             for(i=0;i<20;i++) {
@@ -95,8 +96,9 @@ module fighter
         /**游戏开始*/
         private gameStart():void{
             this.myScore = 0;
+            this.timerCount = 0;
             this.removeChild(this.btnStart);
-            this.bg.start();
+            this.map.start();
             this.touchEnabled=true;
             this.addEventListener(egret.Event.ENTER_FRAME,this.gameViewUpdate,this);
             this.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.touchHandler,this);
@@ -104,6 +106,7 @@ module fighter
             this.myFighter.fire();//开火
             this.myFighter.blood = 10;
             this.myFighter.addEventListener("createBullet",this.createBulletHandler,this);
+            this.enemyFightersTimer.delay = 1000;
             this.enemyFightersTimer.addEventListener(egret.TimerEvent.TIMER,this.createEnemyFighter,this);
             this.enemyFightersTimer.start();
             if(this.scorePanel.parent==this)
@@ -124,15 +127,15 @@ module fighter
             var bullet:fighter.Bullet;
             if(evt.target==this.myFighter) {
                 for(var i:number=0;i<2;i++) {
-                    bullet = fighter.Bullet.produce("b1");
-                    bullet.x = i==0?(this.myFighter.x+10):(this.myFighter.x+this.myFighter.width-22);
-                    bullet.y = this.myFighter.y+30;
+                    bullet = fighter.Bullet.produce("b1_png");
+                    bullet.x = i==0?(this.myFighter.x+30):(this.myFighter.x+this.myFighter.width-72);
+                    bullet.y = this.myFighter.y-50;
                     this.addChildAt(bullet,this.numChildren-1-this.enemyFighters.length);
                     this.myBullets.push(bullet);
                 }
             } else {
                 var theFighter:fighter.Airplane = evt.target;
-                bullet = fighter.Bullet.produce("b2");
+                bullet = fighter.Bullet.produce("b2_png");
                 bullet.x = theFighter.x+28;
                 bullet.y = theFighter.y+10;
                 this.addChildAt(bullet,this.numChildren-1-this.enemyFighters.length);
@@ -140,8 +143,25 @@ module fighter
             }
         }
         /**创建敌机*/
+        private timerCount = 0;
         private createEnemyFighter(evt:egret.TimerEvent):void{
-            var enemyFighter:fighter.Airplane = fighter.Airplane.produce("f2",1000);
+            this.timerCount++;
+            if(this.timerCount>=20)
+            {
+                this.timerCount = 0;
+                if(this.enemyFightersTimer.delay>100)
+                {
+                    this.enemyFightersTimer.delay = this.enemyFightersTimer.delay- 100;
+                    console.log("this.enemyFightersTimer.delay:"+this.enemyFightersTimer.delay)
+                }
+
+            }
+            this.realCreate();
+
+        }
+        private realCreate():void
+        {
+            var enemyFighter:fighter.Airplane = fighter.Airplane.produce("f2_png",1000);
             enemyFighter.x = Math.random()*(this.stageW-enemyFighter.width);
             enemyFighter.y = -enemyFighter.height-Math.random()*300;
             enemyFighter.addEventListener("createBullet",this.createBulletHandler,this);
@@ -253,7 +273,7 @@ module fighter
                 while(delBullets.length>0) {
                     bullet = delBullets.pop();
                     this.removeChild(bullet);
-                    if(bullet.textureName=="b1")
+                    if(bullet.textureName=="b1_png")
                         this.myBullets.splice(this.myBullets.indexOf(bullet),1);
                     else
                         this.enemyBullets.splice(this.enemyBullets.indexOf(bullet),1);
@@ -273,7 +293,7 @@ module fighter
         /**游戏结束*/
         private gameStop():void{
             this.addChild(this.btnStart);
-            this.bg.pause();
+            this.map.pause();
             this.removeEventListener(egret.Event.ENTER_FRAME,this.gameViewUpdate,this);
             this.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.touchHandler,this);
             this.myFighter.stopFire();

@@ -6,9 +6,6 @@
 
 module Manager {
 
-
-    import GlobalData = Model.GlobalData;
-
     export class UIManager extends egret.EventDispatcher{
         public constructor() {
             super();
@@ -23,15 +20,6 @@ module Manager {
             }
             return this.instance;
         }
-        private ui:eui.Component;
-
-        public static statViewIndex:number = 0;
-        public static gameContentIndex:number = 1;
-        public static endViewIndex:number = 2;
-        public static rankViewIndex:number = 3;
-        public static gameInfoIndex:number = 4;
-
-
         /**底图层*/
         private _mapLevel:egret.Sprite;
 
@@ -43,14 +31,6 @@ module Manager {
 
         private _loadLevel:eui.Group;
 
-
-        /**正在进行UI打开关闭动画，不能操作*/
-        private is_ui_tween:boolean;
-
-        /**二级界面的缓动大类型（退出时需要用）*/
-        private second_tween_type: number = 0;
-        /**二级界面的缓动小类型（退出时需要用）*/
-        private second_tween_sub_type: number = 0;
 
         public bg:egret.Bitmap;
 
@@ -77,11 +57,11 @@ module Manager {
 
             this._appLevel.layout = new eui.BasicLayout();
 
-            GlobalData.GameStage.addChild(this._mapLevel);
-             GlobalData.GameStage.addChild(this._gameLvel);
-            GlobalData.GameStage.addChild(this._appLevel);
-             GlobalData.GameStage.addChild(this._topLevel);
-            GlobalData.GameStage.addChild(this._loadLevel);
+            Layout.getInstance().stage.addChild(this._mapLevel);
+            Layout.getInstance().stage.addChild(this._gameLvel);
+            Layout.getInstance().stage.addChild(this._appLevel);
+            Layout.getInstance().stage.addChild(this._topLevel);
+            Layout.getInstance().stage.addChild(this._loadLevel);
         }
         public get appLevel():eui.Group
         {

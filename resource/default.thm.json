@@ -1,5 +1,7 @@
 {
-  "skins": {},
+  "skins": {
+    "bloodProcess": "resource/eui_skins/bloodProcess.exml"
+  },
   "autoGenerateExmlsList": true,
   "exmls": [
     "resource/eui_skins/ButtonSkin.exml",
@@ -12,6 +14,7 @@
     "resource/eui_skins/RankPanel.exml",
     "resource/eui_skins/RewardsSkin.exml",
     "resource/eui_skins/UninAppNotic.exml",
+    "resource/eui_skins/bloodProcess.exml",
     "resource/eui_skins/startButtonSkin.exml"
   ]
 }

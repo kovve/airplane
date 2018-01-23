@@ -8,7 +8,7 @@ module Model {
 
     export class GlobalData {
 
-        public static GameStage: egret.Stage;
+        // public static GameStage: egret.Stage;
         public static GameStage_width: number;
         public static GameStage_height: number;
 

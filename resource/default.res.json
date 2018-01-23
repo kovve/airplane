@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "b1_png,b2_png,bg_jpg,bloodBar_png,bloodBarBg_png,boss_png,btn_start_png,buff_blood_png,enemyBullet_png,f1_png,f2_png,hp_png,restart_png,bomb_mp3,readygo_mp3,bgm_mp3",
+			"keys": "b1_png,b2_png,bg_jpg,bloodBar_png,bloodBarBg_png,boss_png,btn_start_png,buff_blood_png,enemyBullet_png,f1_png,f2_png,hp_png,restart_png,bomb_mp3,readygo_mp3,bgm_mp3,bomb2_mp3,bgm2_mp3,readygo2_mp3",
 			"name": "preload"
 		}
 	],
@@ -79,17 +79,32 @@
 		{
 			"name": "bomb_mp3",
 			"type": "sound",
-			"url": "assets/bomb.mp3"
+			"url": "assets/sound/bomb.mp3"
 		},
 		{
 			"name": "readygo_mp3",
 			"type": "sound",
-			"url": "assets/readygo.mp3"
+			"url": "assets/sound/readygo.mp3"
 		},
 		{
 			"name": "bgm_mp3",
 			"type": "sound",
-			"url": "assets/bgm.mp3"
+			"url": "assets/sound/bgm.mp3"
+		},
+		{
+			"name": "bomb2_mp3",
+			"type": "sound",
+			"url": "assets/sound/bomb.mp3"
+		},
+		{
+			"name": "bgm2_mp3",
+			"type": "sound",
+			"url": "assets/sound/bgm.mp3"
+		},
+		{
+			"name": "readygo2_mp3",
+			"type": "sound",
+			"url": "assets/sound/readygo.mp3"
 		}
 	]
 }

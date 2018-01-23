@@ -22,5 +22,7 @@ declare class RewardsSkinSkin extends eui.Skin{
 }
 declare class UninAppNoticSkin extends eui.Skin{
 }
+declare class bloodProcessSkin extends eui.Skin{
+}
 declare class startButtonSkin extends eui.Skin{
 }
