@@ -35,6 +35,9 @@
       "name": "game"
     },
     {
+      "name": "dragonbones"
+    },
+    {
       "name": "promise",
       "path": "./promise"
     }

@@ -24,9 +24,17 @@ var fighter;
         function Airplane(texture, fireDelay, textureName) {
             var _this = _super.call(this) || this;
             _this.fireDelay = fireDelay;
-            _this.bmp = new egret.Bitmap(texture);
             _this.textureName = textureName;
-            _this.addChild(_this.bmp);
+            if (textureName == "f2_png") {
+                _this.bmp = new egret.Bitmap(texture);
+                _this.addChild(_this.bmp);
+            }
+            else {
+                _this._dragDisplay = DrangonBoneUtil.createIdelDrangonBone("F_zhanshen20");
+                _this._dragDisplay.anchorOffsetX = _this._dragDisplay.width / 2 * -1;
+                _this._dragDisplay.anchorOffsetY = _this._dragDisplay.height / 2 * -1;
+                _this.addChild(_this._dragDisplay);
+            }
             //测试代码
             /*var sp:egret.Sprite = new egret.Sprite();
             sp.graphics.beginFill(0,0.5);
@@ -80,10 +88,10 @@ var fighter;
             this.myPro.skinName = "resource/eui_skins/bloodProcess.exml";
             this.myPro.minimum = 0;
             this.myPro.maximum = this.textureName == "f2_png" ? GameConfig.enmeyPanelBlood : GameConfig.myPlaneBlood;
-            this.myPro.width = this.bmp.width * 0.7; //
-            this.myPro.x = (this.bmp.width - this.myPro.width) / 2;
+            this.myPro.width = this.width * 0.7; //
+            this.myPro.x = (this.width - this.myPro.width) / 2;
             this.myPro.y = this.textureName == "f2_png" ? this.bmp.y - this.myPro.height :
-                this.bmp.y + this.bmp.height;
+                this._dragDisplay.y + this._dragDisplay.height;
             this.addChild(this.myPro);
         };
         /**开火*/

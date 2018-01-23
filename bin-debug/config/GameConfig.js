@@ -24,7 +24,7 @@ var config;
             this.thumb = obj['thumb'];
             this.beginMessage = obj['beginMessage'];
             this.endMessage = obj['endMessage'];
-            this.setGameContend(obj['blockContent'][0]);
+            this.setGameContend(obj['blockContent']);
         };
         GameConfig.setGameContend = function (obj) {
             this.myBulletSpeed = parseInt(obj['myBulletSpeed']) || 12;

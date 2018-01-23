@@ -61,7 +61,7 @@ var fighter;
             this.scorePanel = new fighter.ScorePanel();
             //预创建
             this.preCreatedInstance();
-            ModuleManager.getInstance().openModule("Views.GameInfoView");
+            // ModuleManager.getInstance().openModule("Views.GameInfoView")
         };
         /**预创建一些对象，减少游戏时的创建消耗*/
         GameContainer.prototype.preCreatedInstance = function () {

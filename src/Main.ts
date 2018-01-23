@@ -168,6 +168,5 @@ class Main extends eui.UILayer {
         SoundManager.getIns().play("bgm_mp3",0,0);
         Manager.UIManager.getInstance().startGame();
         Manager.ModuleManager.getInstance().openModule("fighter.GameContainer");
-
     }
 }

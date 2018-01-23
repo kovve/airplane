@@ -44,6 +44,9 @@ module fighter
         private fireTimer:egret.Timer;
         /**飞机生命值*/
         private _blo:number;
+
+        private _dragDisplay:dragonBones.EgretArmatureDisplay;
+
         public set blood(value:number)
         {
             this.myPro.value= value;
@@ -58,9 +61,21 @@ module fighter
         public constructor(texture:egret.Texture,fireDelay:number,textureName:string) {
             super();
             this.fireDelay = fireDelay;
-            this.bmp = new egret.Bitmap(texture);
-			this.textureName = textureName;
-            this.addChild(this.bmp);
+            this.textureName = textureName;
+            if(textureName == "f2_png")
+            {
+                this.bmp = new egret.Bitmap(texture);
+
+                this.addChild(this.bmp);
+            }
+            else
+            {
+                this._dragDisplay = DrangonBoneUtil.createIdelDrangonBone("F_zhanshen20");
+                this._dragDisplay.anchorOffsetX = this._dragDisplay.width/2*-1;
+                this._dragDisplay.anchorOffsetY = this._dragDisplay.height/2*-1;
+                this.addChild(this._dragDisplay);
+            }
+
             //测试代码
             /*var sp:egret.Sprite = new egret.Sprite();
             sp.graphics.beginFill(0,0.5);
@@ -83,12 +98,12 @@ module fighter
             this.myPro.skinName = "resource/eui_skins/bloodProcess.exml";
             this.myPro.minimum = 0;
             this.myPro.maximum = this.textureName == "f2_png"?GameConfig.enmeyPanelBlood:GameConfig.myPlaneBlood;
-            this.myPro.width = this.bmp.width*0.7;//
+            this.myPro.width = this.width*0.7;//
 
-            this.myPro.x = (this.bmp.width - this.myPro.width)/2;
+            this.myPro.x = (this.width - this.myPro.width)/2;
 
             this.myPro.y = this.textureName == "f2_png"?this.bmp.y -this.myPro.height:
-                this.bmp.y +this.bmp.height;
+                this._dragDisplay.y +this._dragDisplay.height;
             this.addChild(this.myPro)
 
         }
