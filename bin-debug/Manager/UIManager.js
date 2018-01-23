@@ -18,16 +18,10 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Manager;
 (function (Manager) {
-    var GlobalData = Model.GlobalData;
     var UIManager = (function (_super) {
         __extends(UIManager, _super);
         function UIManager() {
-            var _this = _super.call(this) || this;
-            /**二级界面的缓动大类型（退出时需要用）*/
-            _this.second_tween_type = 0;
-            /**二级界面的缓动小类型（退出时需要用）*/
-            _this.second_tween_sub_type = 0;
-            return _this;
+            return _super.call(this) || this;
         }
         UIManager.getInstance = function () {
             if (this.instance == null) {
@@ -52,11 +46,11 @@ var Manager;
             this._appLevel.height = Manager.Layout.getInstance().stage.stageHeight;
             this._appLevel.touchEnabled = false;
             this._appLevel.layout = new eui.BasicLayout();
-            GlobalData.GameStage.addChild(this._mapLevel);
-            GlobalData.GameStage.addChild(this._gameLvel);
-            GlobalData.GameStage.addChild(this._appLevel);
-            GlobalData.GameStage.addChild(this._topLevel);
-            GlobalData.GameStage.addChild(this._loadLevel);
+            Manager.Layout.getInstance().stage.addChild(this._mapLevel);
+            Manager.Layout.getInstance().stage.addChild(this._gameLvel);
+            Manager.Layout.getInstance().stage.addChild(this._appLevel);
+            Manager.Layout.getInstance().stage.addChild(this._topLevel);
+            Manager.Layout.getInstance().stage.addChild(this._loadLevel);
         };
         Object.defineProperty(UIManager.prototype, "appLevel", {
             get: function () {
@@ -72,11 +66,6 @@ var Manager;
             enumerable: true,
             configurable: true
         });
-        UIManager.statViewIndex = 0;
-        UIManager.gameContentIndex = 1;
-        UIManager.endViewIndex = 2;
-        UIManager.rankViewIndex = 3;
-        UIManager.gameInfoIndex = 4;
         return UIManager;
     }(egret.EventDispatcher));
     Manager.UIManager = UIManager;

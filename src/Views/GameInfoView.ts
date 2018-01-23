@@ -15,12 +15,13 @@ module Views {
         protected childrenCreated(): void {
             super.childrenCreated();
             this.verticalCenter = this.horizontalCenter = 0;
-            // this.width = Layout.getInstance().stage.stageWidth;
             this.desc.text = DataManager.getInstance().gameVO.gameIntro;
 
-            this.goBackBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+            // this.goBackBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+            this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
         }
 
+        //关闭
         private onClose(event: egret.TouchEvent): void {
             super.hide();
 

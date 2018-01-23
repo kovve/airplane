@@ -31,16 +31,17 @@ var fighter;
         /**初始化*/
         BgMap.prototype.onAddToStage = function (event) {
             this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-            this.stageW = this.stage.stageWidth;
-            this.stageH = this.stage.stageHeight;
-            var texture = RES.getRes("bgImage");
+            this.stageW = Layout.getInstance().stage.stageWidth;
+            this.stageH = Layout.getInstance().stage.stageHeight;
+            var texture = RES.getRes("bg_jpg");
             this.textureHeight = texture.textureHeight; //保留原始纹理的高度，用于后续的计算
             this.rowCount = Math.ceil(this.stageH / this.textureHeight) + 1; //计算在当前屏幕中，需要的图片数量
             this.bmpArr = [];
             //创建这些图片，并设置y坐标，让它们连接起来
             for (var i = 0; i < this.rowCount; i++) {
-                var bgBmp = utils.createBitmapByName("bgImage");
+                var bgBmp = utils.createBitmapByName("bg_jpg");
                 bgBmp.y = this.textureHeight * i - (this.textureHeight * this.rowCount - this.stageH);
+                bgBmp.width = this.stageW;
                 this.bmpArr.push(bgBmp);
                 this.addChild(bgBmp);
             }

@@ -146,6 +146,8 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected startCreateScene(): void {
+        SoundManager.getIns().addItem("bgm_mp3",null,true);
+        SoundManager.getIns().play("bgm_mp3",0,0);
         Manager.UIManager.getInstance().startGame();
         Manager.ModuleManager.getInstance().openModule("fighter.GameContainer");
 

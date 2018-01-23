@@ -8,13 +8,12 @@ var __reflect = (this && this.__reflect) || function (p, c, t) {
 };
 var utils;
 (function (utils) {
-    var GlobalData = Model.GlobalData;
     var ViewUtil = (function () {
         function ViewUtil() {
         }
         ViewUtil.setCenter = function (view) {
-            view.x = (GlobalData.GameStage.stageWidth - view.width) / 2;
-            view.y = (GlobalData.GameStage.stageHeight - view.height) / 2;
+            view.x = (Layout.getInstance().stage.stageWidth - view.width) / 2;
+            view.y = (Layout.getInstance().stage.stageHeight - view.height) / 2;
         };
         ViewUtil.getShape = function (width, height, color, alpha) {
             if (width === void 0) { width = 640; }

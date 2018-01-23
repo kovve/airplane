@@ -24,11 +24,19 @@ var fighter;
         function Airplane(texture, fireDelay, textureName) {
             var _this = _super.call(this) || this;
             /**飞机生命值*/
-            _this.blood = 10;
+            _this._blo = 10;
             _this.fireDelay = fireDelay;
             _this.bmp = new egret.Bitmap(texture);
             _this.textureName = textureName;
             _this.addChild(_this.bmp);
+            //测试代码
+            /*var sp:egret.Sprite = new egret.Sprite();
+            sp.graphics.beginFill(0,0.5);
+            var rect = utils.GameUtil.createSelfBound(this,0.6);
+            sp.graphics.drawRect(rect.x,rect.y,rect.width,rect.height);
+            sp.graphics.endFill();
+            this.addChild(sp);*/
+            _this.addBloodProcess();
             _this.fireTimer = new egret.Timer(fireDelay);
             _this.fireTimer.addEventListener(egret.TimerEvent.TIMER, _this.createBullet, _this);
             return _this;
@@ -57,6 +65,28 @@ var fighter;
             var dict = fighter.Airplane.cacheDict[textureName];
             if (dict.indexOf(theFighter) == -1)
                 dict.push(theFighter);
+        };
+        Object.defineProperty(Airplane.prototype, "blood", {
+            get: function () {
+                return this._blo;
+            },
+            set: function (value) {
+                this.myPro.value = value;
+                this._blo = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Airplane.prototype.addBloodProcess = function () {
+            this.myPro = new eui.ProgressBar();
+            this.myPro.skinName = "resource/eui_skins/bloodProcess.exml";
+            this.myPro.minimum = 0;
+            this.myPro.maximum = this._blo;
+            this.myPro.width = this.bmp.width * 0.7; //
+            this.myPro.x = (this.bmp.width - this.myPro.width) / 2;
+            this.myPro.y = this.textureName == "f2_png" ? this.bmp.y - this.myPro.height :
+                this.bmp.y + this.bmp.height;
+            this.addChild(this.myPro);
         };
         /**开火*/
         Airplane.prototype.fire = function () {

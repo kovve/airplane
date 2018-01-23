@@ -1,0 +1,10 @@
+{
+  "1611c9c8d4b": {
+    "path": "..\\resource\\eui_skins\\bloodProcess.ts",
+    "class": "bloodProcess",
+    "parentPath": ""
+  },
+  "global": {
+    "globalAutoLayerMarkEnable": false
+  }
+}

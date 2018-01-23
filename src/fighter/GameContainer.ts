@@ -63,6 +63,7 @@ module fighter
             this.scorePanel = new fighter.ScorePanel();
             //预创建
             this.preCreatedInstance();
+            ModuleManager.getInstance().openModule("Views.GameInfoView")
         }
         /**预创建一些对象，减少游戏时的创建消耗*/
         private preCreatedInstance():void {
@@ -103,7 +104,12 @@ module fighter
             this.addEventListener(egret.Event.ENTER_FRAME,this.gameViewUpdate,this);
             this.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.touchHandler,this);
             this.myFighter.x = (this.stageW-this.myFighter.width)/2;
-            this.myFighter.fire();//开火
+            SoundManager.getIns().play("readygo_mp3");
+            egret.setTimeout(()=>
+                {
+                    this.myFighter.fire();//开火
+                },this,2000);
+
             this.myFighter.blood = 10;
             this.myFighter.addEventListener("createBullet",this.createBulletHandler,this);
             this.enemyFightersTimer.delay = 1000;
@@ -247,7 +253,11 @@ module fighter
                         if(delBullets.indexOf(bullet)==-1)
                             delBullets.push(bullet);
                         if(theFighter.blood<=0 && delFighters.indexOf(theFighter)==-1)
+                        {
+                            SoundManager.getIns().play("bomb_mp3");
                             delFighters.push(theFighter);
+                        }
+
                     }
                 }
             }

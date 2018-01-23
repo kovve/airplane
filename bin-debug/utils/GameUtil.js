@@ -11,13 +11,35 @@ var utils;
         }
         /**基于矩形的碰撞检测*/
         GameUtil.hitTest = function (obj1, obj2) {
-            var rect1 = obj1.getBounds();
-            var rect2 = obj2.getBounds();
-            rect1.x = obj1.x;
-            rect1.y = obj1.y;
-            rect2.x = obj2.x;
-            rect2.y = obj2.y;
+            var rect1;
+            var rect2;
+            var per = 1;
+            if (obj1 instanceof fighter.Bullet) {
+                per = 1;
+            }
+            else {
+                per = 0.6;
+            }
+            rect1 = GameUtil.createSelfBound(obj1, per);
+            if (obj2 instanceof fighter.Airplane) {
+                per = 0.6;
+            }
+            else {
+                per = 1;
+            }
+            rect2 = GameUtil.createSelfBound(obj2, per);
             return rect1.intersects(rect2);
+        };
+        /*
+        * 生成obj对应的矩形 per为生成矩形相对于原来的比值
+        * */
+        GameUtil.createSelfBound = function (obj, per) {
+            if (per === void 0) { per = 1; }
+            var w = obj.width * per;
+            var h = obj.height * per;
+            var x = (obj.width - obj.width * per) / 2 + obj.x;
+            var y = (obj.height - obj.height * per) / 2 + obj.y;
+            return new egret.Rectangle(x, y, w, h);
         };
         return GameUtil;
     }());

@@ -25,10 +25,11 @@ var Views;
         GameInfoView.prototype.childrenCreated = function () {
             _super.prototype.childrenCreated.call(this);
             this.verticalCenter = this.horizontalCenter = 0;
-            // this.width = Layout.getInstance().stage.stageWidth;
             this.desc.text = DataManager.getInstance().gameVO.gameIntro;
-            this.goBackBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+            // this.goBackBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+            this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
         };
+        //关闭
         GameInfoView.prototype.onClose = function (event) {
             _super.prototype.hide.call(this);
         };
