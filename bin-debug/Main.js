@@ -41,6 +41,10 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var ModuleManager = Manager.ModuleManager;
 var Layout = Manager.Layout;
+var EventManager = Manager.EventManager;
+var PlayerInfoProxy = proxy.PlayerInfoProxy;
+var HttpCommand = proxy.HttpCommand;
+var GameConfig = config.GameConfig;
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
@@ -60,6 +64,7 @@ var Main = (function (_super) {
         egret.lifecycle.onResume = function () {
             egret.ticker.resume();
         };
+        egret.ImageLoader.crossOrigin = "anonymous";
         Layout.getInstance().init(this.stage);
         //inject the custom material parser
         //注入自定义的素材解析器
@@ -70,6 +75,14 @@ var Main = (function (_super) {
         //设置加载进度界面
         this.loadingView = new LoadingUI();
         this.stage.addChild(this.loadingView);
+        PlayerInfoProxy.getInstance().getMyInfo(); //查询用户信息
+        //游戏配置
+        EventManager.addEventListener(Events.CommonEvent.GET_INFO_SUCESS, this.loadGameDataBack, this);
+        HttpCommand.getInstance().getGameConfig(2);
+    };
+    Main.prototype.loadGameDataBack = function () {
+        EventManager.removeEventListener(Events.CommonEvent.GET_INFO_SUCESS, this.loadGameDataBack, this);
+        document.title = GameConfig.appName || "2048小游戏";
         // initialize the Resource loading library
         //初始化Resource资源加载库
         RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);

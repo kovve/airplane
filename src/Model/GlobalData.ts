@@ -49,7 +49,7 @@ module Model {
         /*域名*/
         public static gameDomainURL: string;
 
-        public static gameId: number = 1;//小游戏固定ID  每个小游戏拥有独有ID不可变
+
         public static postJosn: any = {
             "domain": "",
             "appId": 0,

@@ -17,22 +17,14 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Views;
 (function (Views) {
-    var Layout = Manager.Layout;
-    var StringUtil = utils.StringUtil;
-    var GlobalData = Model.GlobalData;
-    var DataManager = Manager.DataManager;
-    var CommonEvent = Events.CommonEvent;
-    var HttpCommand = proxy.HttpCommand;
-    var ModuleManager = Manager.ModuleManager;
-    var EventManager = Manager.EventManager;
-    var BaseView = component.BaseView;
+    var RankData = Model.RankData;
     var RankListView = (function (_super) {
         __extends(RankListView, _super);
         function RankListView() {
             var _this = _super.call(this) || this;
             _this.initX = 0;
             _this.initY = 0;
-            _this.skinName = "resource/eui_skins/RankPanel.exml";
+            _this.skinName = "resource/skins/RankPanel.exml";
             _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onshow, _this);
             return _this;
         }
@@ -42,7 +34,7 @@ var Views;
             this.height = Layout.getInstance().stage.stageHeight;
         };
         RankListView.prototype.onChange = function (e) {
-            if (e.currentTarget.name == "nationBtn") {
+            if (e.currentTarget.skinName == "tabBtn2Skin") {
                 this.curType = 2;
             }
             else {
@@ -51,7 +43,7 @@ var Views;
             this.changeRank();
         };
         RankListView.prototype.onshow = function () {
-            EventManager.addEventListener(CommonEvent.GET_RANK_SUCESS, this.renderData, this);
+            EventManager.addEventListener(Events.CommonEvent.GET_RANK_SUCESS, this.renderData, this);
             this.curType = 1;
             this.changeRank();
             // this.mylist.dataProvider = new eui.ArrayCollection( dsListHeros );
@@ -63,7 +55,7 @@ var Views;
             this.addEventListener(egret.TouchEvent.TOUCH_END, this.end, this);
         };
         RankListView.prototype.detroy = function () {
-            EventManager.removeEventListener(CommonEvent.GET_RANK_SUCESS, this.renderData, this);
+            EventManager.removeEventListener(Events.CommonEvent.GET_RANK_SUCESS, this.renderData, this);
             this.backBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onBack, this);
             this.nationBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onChange, this);
             this.localBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onChange, this);
@@ -86,20 +78,23 @@ var Views;
             ModuleManager.getInstance().destroyForInstance(this);
         };
         RankListView.prototype.changeRank = function () {
+            if (this.scroller) {
+                this.scroller.stopAnimation();
+            }
             if (this.mylist) {
                 this.mylist.scrollV = 0;
             }
             if (this.curType == 1) {
-                this.localBtn.currentState = "down";
-                this.nationBtn.currentState = "up";
-                this.touchChildren = this.touchEnabled = false;
-                HttpCommand.getInstance().getRankList(GlobalData.gameDomainURL, GlobalData.gameId, this.curType);
-            }
-            else {
                 this.localBtn.currentState = "up";
                 this.nationBtn.currentState = "down";
                 this.touchChildren = this.touchEnabled = false;
-                HttpCommand.getInstance().getRankList(GlobalData.gameDomainURL, GlobalData.gameId, this.curType);
+                HttpCommand.getInstance().getRankList(this.curType);
+            }
+            else {
+                this.localBtn.currentState = "down";
+                this.nationBtn.currentState = "up";
+                this.touchChildren = this.touchEnabled = false;
+                HttpCommand.getInstance().getRankList(this.curType);
             }
         };
         RankListView.prototype.renderData = function (e) {
@@ -112,23 +107,23 @@ var Views;
             }
             var dsListHeros;
             if (this.curType == 1) {
-                dsListHeros = DataManager.getInstance().localSortList;
+                dsListHeros = RankData.getInstance().localSortList;
             }
             else {
-                dsListHeros = DataManager.getInstance().nationSortList;
+                dsListHeros = RankData.getInstance().nationSortList;
             }
             this.mylist.dataProvider = new eui.ArrayCollection(dsListHeros);
             this.mylist.scrollV = 0;
         };
         return RankListView;
-    }(BaseView));
+    }(component.BaseView));
     Views.RankListView = RankListView;
     __reflect(RankListView.prototype, "Views.RankListView");
     var RankListItemRenderer = (function (_super) {
         __extends(RankListItemRenderer, _super);
         function RankListItemRenderer() {
             var _this = _super.call(this) || this;
-            _this.skinName = "resource/eui_skins/RankListItem.exml";
+            _this.skinName = "resource/skins/RankListItem.exml";
             return _this;
         }
         RankListItemRenderer.prototype.createChildren = function () {
@@ -137,15 +132,19 @@ var Views;
         };
         RankListItemRenderer.prototype.dataChanged = function () {
             _super.prototype.dataChanged.call(this);
-            this.data.userName = StringUtil.getChar(this.data.userName, 3 * 6);
-            this.order.text = "" + (this.itemIndex + 1);
-            // 同一个域下可以请求
-            if (GlobalData.telephoneId > 0) {
-                this.userPic.source = "http://" + GlobalData.gameDomainURL + "/statics/images/nophoto.gif";
+            this.data.userName = utils.StringUtil.getChar(this.data.userName, 3 * 6);
+            if (this.itemIndex < 3) {
+                this.scoreTxt.textColor = 0xFF0000;
+                this.currentState = "order";
+                this.orderPic.source = RES.getRes("order" + (this.itemIndex + 1) + "_png");
             }
             else {
-                this.userPic.source = "" + this.data.userPic;
+                this.currentState = "nomorl";
+                this.order.text = "" + (this.itemIndex + 1);
+                this.scoreTxt.textColor = 0x333333;
             }
+            // 同一个域下可以请求
+            this.userPic.source = "" + this.data.userPic;
             // this.userPic.source = "http://game.hslmnews.com/resource/assets/player.png";
         };
         return RankListItemRenderer;

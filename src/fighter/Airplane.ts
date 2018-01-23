@@ -22,7 +22,7 @@ module fighter
             } else {
                 theFighter = new fighter.Airplane(RES.getRes(textureName),fireDelay,textureName);
             }
-            theFighter.blood = 10;
+            theFighter.blood = textureName == "f2_png"?GameConfig.enmeyPanelBlood:GameConfig.myPlaneBlood;
             return theFighter;
         }
         /**回收*/
@@ -43,7 +43,7 @@ module fighter
         /**定时射*/
         private fireTimer:egret.Timer;
         /**飞机生命值*/
-        private _blo:number = 10;
+        private _blo:number;
         public set blood(value:number)
         {
             this.myPro.value= value;
@@ -82,7 +82,7 @@ module fighter
             this.myPro = new eui.ProgressBar();
             this.myPro.skinName = "resource/eui_skins/bloodProcess.exml";
             this.myPro.minimum = 0;
-            this.myPro.maximum = this._blo;
+            this.myPro.maximum = this.textureName == "f2_png"?GameConfig.enmeyPanelBlood:GameConfig.myPlaneBlood;
             this.myPro.width = this.bmp.width*0.7;//
 
             this.myPro.x = (this.bmp.width - this.myPro.width)/2;

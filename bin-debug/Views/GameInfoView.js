@@ -13,8 +13,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Views;
 (function (Views) {
-    var DataManager = Manager.DataManager;
     var BaseView = component.BaseView;
+    var GameConfig = config.GameConfig;
     var GameInfoView = (function (_super) {
         __extends(GameInfoView, _super);
         function GameInfoView() {
@@ -25,7 +25,7 @@ var Views;
         GameInfoView.prototype.childrenCreated = function () {
             _super.prototype.childrenCreated.call(this);
             this.verticalCenter = this.horizontalCenter = 0;
-            this.desc.text = DataManager.getInstance().gameVO.gameIntro;
+            this.desc.text = GameConfig.gameIntro;
             // this.goBackBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
             this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
         };

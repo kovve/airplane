@@ -23,8 +23,6 @@ var fighter;
         __extends(Airplane, _super);
         function Airplane(texture, fireDelay, textureName) {
             var _this = _super.call(this) || this;
-            /**飞机生命值*/
-            _this._blo = 10;
             _this.fireDelay = fireDelay;
             _this.bmp = new egret.Bitmap(texture);
             _this.textureName = textureName;
@@ -54,7 +52,7 @@ var fighter;
             else {
                 theFighter = new fighter.Airplane(RES.getRes(textureName), fireDelay, textureName);
             }
-            theFighter.blood = 10;
+            theFighter.blood = textureName == "f2_png" ? GameConfig.enmeyPanelBlood : GameConfig.myPlaneBlood;
             return theFighter;
         };
         /**回收*/
@@ -81,7 +79,7 @@ var fighter;
             this.myPro = new eui.ProgressBar();
             this.myPro.skinName = "resource/eui_skins/bloodProcess.exml";
             this.myPro.minimum = 0;
-            this.myPro.maximum = this._blo;
+            this.myPro.maximum = this.textureName == "f2_png" ? GameConfig.enmeyPanelBlood : GameConfig.myPlaneBlood;
             this.myPro.width = this.bmp.width * 0.7; //
             this.myPro.x = (this.bmp.width - this.myPro.width) / 2;
             this.myPro.y = this.textureName == "f2_png" ? this.bmp.y - this.myPro.height :

@@ -55,7 +55,7 @@ var Views;
             }
             this.notIngameText.visible = false;
             EventManager.addEventListener(CommonEvent.UP_SOCRE_SUCESS, this.onUpSocre, this);
-            HttpCommand.getInstance().reportResult(GlobalData.gameDomainURL, GlobalData.userID, GlobalData.gameId, GlobalData.score);
+            HttpCommand.getInstance().reportResult(GlobalData.userID, GlobalData.score);
         };
         GameEndView.prototype.initEvent = function () {
             this.restartBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onRestart, this);

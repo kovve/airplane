@@ -54,8 +54,7 @@ module Views {
             }
             this.notIngameText.visible = false;
             EventManager.addEventListener(CommonEvent.UP_SOCRE_SUCESS, this.onUpSocre, this);
-            HttpCommand.getInstance().reportResult(GlobalData.gameDomainURL,
-                GlobalData.userID, GlobalData.gameId, GlobalData.score);
+            HttpCommand.getInstance().reportResult(GlobalData.userID,GlobalData.score);
         }
 
         public initEvent(): void {

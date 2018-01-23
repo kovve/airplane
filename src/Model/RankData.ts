@@ -1,17 +1,15 @@
-module Manager 
+module Model
 {
-	import GameVo = Model.GameVo;
-
-    export class DataManager {
+    export class RankData {
 		public constructor()
 		{
 
 		}
 
-		private static instance: DataManager;
-		public static getInstance(): DataManager {
+		private static instance: RankData;
+		public static getInstance(): RankData {
 			if (this.instance == null) {
-				this.instance = new DataManager();
+				this.instance = new RankData();
 			}
 			return this.instance;
 		}
@@ -21,7 +19,6 @@ module Manager
 
 		public localGet:boolean;
 		public nationGet:boolean;
-		public gameVO:GameVo = new GameVo();
 
 
 		public localRankList(e: any): void {
@@ -55,12 +52,6 @@ module Manager
 				return 1;
 			}
 			return 0;
-		}
-
-		public updateGameVo(obj:any):void
-		{
-			this.gameVO = GameVo.createVo(obj);
-			console.log(this.gameVO);
 		}
 	}
 }

@@ -22,7 +22,6 @@ var Model;
         GlobalData.userID = "599";
         /*appID*/
         GlobalData.appID = 1;
-        GlobalData.gameId = 1; //小游戏固定ID  每个小游戏拥有独有ID不可变
         GlobalData.postJosn = {
             "domain": "",
             "appId": 0,

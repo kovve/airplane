@@ -3,28 +3,21 @@
  * 排行榜
  */
 
-
 module Views {
 
-    import Layout = Manager.Layout;
-    import StringUtil = utils.StringUtil;
-    import GlobalData = Model.GlobalData;
-    import DataManager = Manager.DataManager;
-    import CommonEvent = Events.CommonEvent;
-    import HttpCommand = proxy.HttpCommand;
-    import ModuleManager = Manager.ModuleManager;
-    import EventManager = Manager.EventManager;
-    import BaseView = component.BaseView;
 
-    export class RankListView extends BaseView {
+    import RankData = Model.RankData;
+
+    export class RankListView extends component.BaseView {
         private mylist: eui.List;
         private nationBtn: eui.Button;
         private localBtn: eui.Button;
         private backBtn: eui.Image;
+        private scroller: eui.Scroller;
         private curType: number;//1 为本地排行  2 为全国排行榜
         public constructor() {
             super();
-            this.skinName = "resource/eui_skins/RankPanel.exml";
+            this.skinName = "resource/skins/RankPanel.exml";
             this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onshow, this);
         }
 
@@ -36,7 +29,7 @@ module Views {
         }
 
         private onChange(e: egret.TouchEvent): void {
-            if (e.currentTarget.name == "nationBtn") {
+            if (e.currentTarget.skinName == "tabBtn2Skin") {
                 this.curType = 2;
             }
             else {
@@ -47,7 +40,7 @@ module Views {
         }
 
         private onshow(): void {
-            EventManager.addEventListener(CommonEvent.GET_RANK_SUCESS, this.renderData, this);
+            EventManager.addEventListener(Events.CommonEvent.GET_RANK_SUCESS, this.renderData, this);
             this.curType = 1;
             this.changeRank();
             // this.mylist.dataProvider = new eui.ArrayCollection( dsListHeros );
@@ -62,7 +55,7 @@ module Views {
         }
 
         public detroy(): void {
-            EventManager.removeEventListener(CommonEvent.GET_RANK_SUCESS, this.renderData, this);
+            EventManager.removeEventListener(Events.CommonEvent.GET_RANK_SUCESS, this.renderData, this);
 
             this.backBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onBack, this);
 
@@ -95,31 +88,32 @@ module Views {
         }
 
         private changeRank(): void {
+            if (this.scroller) {
+                this.scroller.stopAnimation();
+            }
             if (this.mylist) {
                 this.mylist.scrollV = 0;
             }
             if (this.curType == 1) {
-                this.localBtn.currentState = "down";
-                this.nationBtn.currentState = "up";
-
-                this.touchChildren = this.touchEnabled = false;
-                HttpCommand.getInstance().getRankList(GlobalData.gameDomainURL,
-                    GlobalData.gameId, this.curType);
-            }
-            else {
                 this.localBtn.currentState = "up";
                 this.nationBtn.currentState = "down";
 
                 this.touchChildren = this.touchEnabled = false;
-                HttpCommand.getInstance().getRankList(GlobalData.gameDomainURL,
-                    GlobalData.gameId, this.curType);
+                HttpCommand.getInstance().getRankList(this.curType);
+            }
+            else {
+                this.localBtn.currentState = "down";
+                this.nationBtn.currentState = "up";
+
+                this.touchChildren = this.touchEnabled = false;
+                HttpCommand.getInstance().getRankList(this.curType);
 
             }
 
 
         }
 
-        private renderData(e: CommonEvent = null) {
+        private renderData(e: Events.CommonEvent = null) {
             this.touchChildren = this.touchEnabled = true;
             if (e) {
                 if (parseInt(e.data) != this.curType) {
@@ -128,10 +122,10 @@ module Views {
             }
             var dsListHeros: Object[];
             if (this.curType == 1) {
-                dsListHeros = DataManager.getInstance().localSortList;
+                dsListHeros = RankData.getInstance().localSortList;
             }
             else {
-                dsListHeros = DataManager.getInstance().nationSortList;
+                dsListHeros = RankData.getInstance().nationSortList;
             }
 
             this.mylist.dataProvider = new eui.ArrayCollection(dsListHeros);
@@ -143,10 +137,12 @@ module Views {
     export class RankListItemRenderer extends eui.ItemRenderer {
         private userPic: eui.Image;
         private order: eui.Label;
+        private orderPic: eui.Image;
+        private scoreTxt: eui.Label;
 
         public constructor() {
             super();
-            this.skinName = "resource/eui_skins/RankListItem.exml";
+            this.skinName = "resource/skins/RankListItem.exml";
         }
 
         protected createChildren(): void {
@@ -156,15 +152,21 @@ module Views {
 
         protected dataChanged(): void {
             super.dataChanged();
-            this.data.userName = StringUtil.getChar(this.data.userName, 3 * 6);
-            this.order.text = "" + (this.itemIndex + 1);
-            // 同一个域下可以请求
-            if (GlobalData.telephoneId > 0) {
-                this.userPic.source = `http://${GlobalData.gameDomainURL}/statics/images/nophoto.gif`;
+            this.data.userName = utils.StringUtil.getChar(this.data.userName, 3 * 6);
+            if (this.itemIndex < 3) {
+                this.scoreTxt.textColor = 0xFF0000;
+                this.currentState = "order";
+                this.orderPic.source = RES.getRes("order" + (this.itemIndex + 1) + "_png")
+
             }
             else {
-                this.userPic.source = "" + this.data.userPic;
+                this.currentState = "nomorl";
+                this.order.text = "" + (this.itemIndex + 1);
+                this.scoreTxt.textColor = 0x333333;
             }
+
+            // 同一个域下可以请求
+            this.userPic.source = "" + this.data.userPic;
 
 
             // this.userPic.source = "http://game.hslmnews.com/resource/assets/player.png";

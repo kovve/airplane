@@ -107,7 +107,7 @@ var fighter;
             egret.setTimeout(function () {
                 _this.myFighter.fire(); //开火
             }, this, 2000);
-            this.myFighter.blood = 10;
+            this.myFighter.blood = GameConfig.myPlaneBlood;
             this.myFighter.addEventListener("createBullet", this.createBulletHandler, this);
             this.enemyFightersTimer.delay = 1000;
             this.enemyFightersTimer.addEventListener(egret.TimerEvent.TIMER, this.createEnemyFighter, this);
@@ -185,7 +185,7 @@ var fighter;
                     i--;
                     myBulletsCount--;
                 }
-                bullet.y -= 12 * speedOffset;
+                bullet.y -= GameConfig.myBulletSpeed * speedOffset;
             }
             //敌人飞机运动
             var theFighter;
@@ -214,7 +214,7 @@ var fighter;
                     i--;
                     enemyBulletsCount--; //数组长度已经改变
                 }
-                bullet.y += 8 * speedOffset;
+                bullet.y += GameConfig.enemyBulletSpeed * speedOffset;
             }
             this.gameHitTest();
         };
@@ -235,7 +235,7 @@ var fighter;
                 for (j = 0; j < enemyFighterCount; j++) {
                     theFighter = this.enemyFighters[j];
                     if (utils.GameUtil.hitTest(theFighter, bullet)) {
-                        theFighter.blood -= 2;
+                        theFighter.blood -= GameConfig.myBulletHurt;
                         if (delBullets.indexOf(bullet) == -1)
                             delBullets.push(bullet);
                         if (theFighter.blood <= 0 && delFighters.indexOf(theFighter) == -1) {
@@ -249,7 +249,7 @@ var fighter;
             for (i = 0; i < enemyBulletsCount; i++) {
                 bullet = this.enemyBullets[i];
                 if (utils.GameUtil.hitTest(this.myFighter, bullet)) {
-                    this.myFighter.blood -= 1;
+                    this.myFighter.blood -= GameConfig.enemyBulletHurt;
                     if (delBullets.indexOf(bullet) == -1)
                         delBullets.push(bullet);
                 }
@@ -258,7 +258,7 @@ var fighter;
             for (i = 0; i < enemyFighterCount; i++) {
                 theFighter = this.enemyFighters[i];
                 if (utils.GameUtil.hitTest(this.myFighter, theFighter)) {
-                    this.myFighter.blood -= 10;
+                    this.myFighter.blood -= GameConfig.hitHurt;
                 }
             }
             if (this.myFighter.blood <= 0) {
