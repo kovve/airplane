@@ -48,6 +48,7 @@ module proxy {
         public getRankList(sort: number = 0): void {
             let curURL: string =
                 `http://${GlobalData.gameDomainURL}/index.php?m=content&c=userRankingList&a=showList&domain=${GlobalData.gameDomainURL}&appId=${GameConfig.gameId}&sort=${sort}&requstID=${HttpCommand.rankInfoID}`;
+            console.log(curURL);
             this.postRequset(curURL);
         }
 
@@ -55,6 +56,7 @@ module proxy {
         public getUserRank(useID: string): void {
             let curURL: string =
                 `http://${GlobalData.gameDomainURL}/index.php?m=content&c=currentUserNumber&a=showIndex&userId=${useID}&gameId=${GameConfig.gameId}&requstID=${HttpCommand.userRank}`;
+            console.log(curURL);
             this.postRequset(curURL);
 
         }

@@ -12,10 +12,10 @@ module Model {
         public static GameStage_width: number;
         public static GameStage_height: number;
 
-        public static isFirstLog: boolean = false;
+        public static isNotFirstLogin: boolean = false;
 
         // public static josnStr:string;
-        public static version: number = 201605241700;
+        public static version: number = 201801251304;
         //游戏得分
         public static score: number = 0;
         /*是否在App中玩这个游戏*/
@@ -34,7 +34,7 @@ module Model {
         public static sitID: number;
 
         /*用户ID*/
-        public static userID: string = "599";
+        public static userID: string = "1000308962M4GU";
 
         /*appID*/
         public static appID: number = 1;

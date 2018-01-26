@@ -11,15 +11,15 @@ var Model;
     var GlobalData = (function () {
         function GlobalData() {
         }
-        GlobalData.isFirstLog = false;
+        GlobalData.isNotFirstLogin = false;
         // public static josnStr:string;
-        GlobalData.version = 201605241700;
+        GlobalData.version = 201801251304;
         //游戏得分
         GlobalData.score = 0;
         /*是否在App中玩这个游戏*/
         GlobalData.isInAPP = false;
         /*用户ID*/
-        GlobalData.userID = "599";
+        GlobalData.userID = "1000308962M4GU";
         /*appID*/
         GlobalData.appID = 1;
         GlobalData.postJosn = {

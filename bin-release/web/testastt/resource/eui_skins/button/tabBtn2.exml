@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="tabBtn2Skin" states="up,down" width="400" height="300" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing"  width.down="200" height.down="50" width.up="200" height.up="50">
+	<w:Config id="161081e6cc5" ></w:Config>
+	<e:Image source="unselect_png" includeIn="down" x="0" y="0"/>
+	<e:Image source="select_png" includeIn="up" x="-5" y="0" visible="true"/>
+	<e:Image width="42" height="42" x="12" y="4" anchorOffsetX="0" anchorOffsetY="0" includeIn="down" source="nation_2_png"/>
+	<e:Label text="全国排名" includeIn="down" x="60" y="10" anchorOffsetX="0" width="127.52" fontFamily="SimHei" anchorOffsetY="0" height="26.97" textColor="0xffffff"/>
+	<e:Image width="42" height="42" x="12" y="4" anchorOffsetX="0" anchorOffsetY="0" includeIn="up" rotation="360" source="nationRnak_png"/>
+	<e:Label text="全国排名" x="60" y="10" anchorOffsetX="0" width="127.52" fontFamily="SimHei" includeIn="up" anchorOffsetY="0" height="28.48" textColor="0xa4231d"/>
+</e:Skin>

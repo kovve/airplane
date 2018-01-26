@@ -32,6 +32,8 @@ var Events;
         CommonEvent.UP_SOCRE_SUCESS = "UP_SOCRE_SUCESS";
         /*获取分数成功*/
         CommonEvent.GET_USERRANK_SUCESS = "GET_USERRANK_SUCESS";
+        /*游戏开始*/
+        CommonEvent.GAME_START = "GAME_START";
         return CommonEvent;
     }(egret.Event));
     Events.CommonEvent = CommonEvent;

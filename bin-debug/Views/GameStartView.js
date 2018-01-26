@@ -11,38 +11,36 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Views;
-(function (Views) {
-    var BaseView = component.BaseView;
-    var GlobalData = Model.GlobalData;
-    var ModuleManager = Manager.ModuleManager;
-    var GameStartView = (function (_super) {
-        __extends(GameStartView, _super);
-        function GameStartView() {
-            var _this = _super.call(this) || this;
-            _this.fullScreen = true;
-            _this.addBlackBg = false;
-            _this.skinName = "resource/eui_skins/GameStartSkin.exml";
-            return _this;
-        }
-        GameStartView.prototype.show = function () {
-            _super.prototype.show.call(this);
-            if (!GlobalData.isInAPP) {
-                ModuleManager.getInstance().openModule("GameInfoVGameNoInAppViewiew");
-            }
-            this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onRestart, this);
-        };
-        GameStartView.prototype.onRestart = function (event) {
-            GlobalData.score = 0;
-            // SoundManager.getIns().addItem("hitSound_mp3");
-            // SoundManager.getIns().addItem("gameFail_mp3");
-            // SoundManager.getIns().addItem("startSound_mp3");
-            // SoundManager.getIns().play("startSound_mp3");
-            ModuleManager.getInstance().destroyForInstance(this);
-            ModuleManager.getInstance().openModule("GameLogic");
-        };
-        return GameStartView;
-    }(BaseView));
-    Views.GameStartView = GameStartView;
-    __reflect(GameStartView.prototype, "Views.GameStartView");
-})(Views || (Views = {}));
+var GameStartView = (function (_super) {
+    __extends(GameStartView, _super);
+    function GameStartView() {
+        var _this = _super.call(this) || this;
+        _this.skinName = "resource/eui_skins/GameStartSkin.exml";
+        return _this;
+    }
+    GameStartView.prototype.show = function () {
+        _super.prototype.show.call(this);
+        this.startBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onRestart, this);
+        this.rankBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onRank, this);
+        this.infoBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onInfo, this);
+        this.rewardBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onReward, this);
+    };
+    GameStartView.prototype.onRestart = function (event) {
+        GlobalData.score = 0;
+        ModuleManager.getInstance().destroyForInstance(this);
+        EventManager.dispatchEvent(new Events.CommonEvent(Events.CommonEvent.GAME_START));
+    };
+    GameStartView.prototype.onRank = function (event) {
+        ModuleManager.getInstance().openModule("RankListView");
+    };
+    GameStartView.prototype.onInfo = function (event) {
+        //{desc:string,titleUrl:string}
+        ModuleManager.getInstance().openModule("GameRewardsView", { desc: GameConfig.gameIntro, titleUrl: "titleInfo_png", showBtn: false });
+    };
+    GameStartView.prototype.onReward = function (event) {
+        //{desc:string,titleUrl:string}
+        ModuleManager.getInstance().openModule("GameRewardsView", { desc: GameConfig.awardExplain, titleUrl: "titleAward_png", showBtn: false });
+    };
+    return GameStartView;
+}(component.BaseView));
+__reflect(GameStartView.prototype, "GameStartView");

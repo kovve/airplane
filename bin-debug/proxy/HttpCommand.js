@@ -38,11 +38,13 @@ var proxy;
         HttpCommand.prototype.getRankList = function (sort) {
             if (sort === void 0) { sort = 0; }
             var curURL = "http://" + GlobalData.gameDomainURL + "/index.php?m=content&c=userRankingList&a=showList&domain=" + GlobalData.gameDomainURL + "&appId=" + GameConfig.gameId + "&sort=" + sort + "&requstID=" + HttpCommand.rankInfoID;
+            console.log(curURL);
             this.postRequset(curURL);
         };
         //获取当前用户排名(1本地排行，2全国排行，3预留）
         HttpCommand.prototype.getUserRank = function (useID) {
             var curURL = "http://" + GlobalData.gameDomainURL + "/index.php?m=content&c=currentUserNumber&a=showIndex&userId=" + useID + "&gameId=" + GameConfig.gameId + "&requstID=" + HttpCommand.userRank;
+            console.log(curURL);
             this.postRequset(curURL);
         };
         HttpCommand.prototype.postRequset = function (url) {

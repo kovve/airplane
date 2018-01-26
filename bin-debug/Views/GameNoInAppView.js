@@ -11,37 +11,32 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Views;
-(function (Views) {
-    var BaseView = component.BaseView;
-    var GameInfoVGameNoInAppViewiew = (function (_super) {
-        __extends(GameInfoVGameNoInAppViewiew, _super);
-        function GameInfoVGameNoInAppViewiew() {
-            var _this = _super.call(this) || this;
-            _this.skinName = "resource/eui_skins/UninAppNotic.exml";
-            return _this;
+var GameInfoVGameNoInAppViewiew = (function (_super) {
+    __extends(GameInfoVGameNoInAppViewiew, _super);
+    function GameInfoVGameNoInAppViewiew() {
+        var _this = _super.call(this) || this;
+        _this.skinName = "resource/eui_skins/UninAppNotic.exml";
+        return _this;
+    }
+    GameInfoVGameNoInAppViewiew.prototype.childrenCreated = function () {
+        _super.prototype.childrenCreated.call(this);
+        this.verticalCenter = this.horizontalCenter = 0;
+        // this.width = Layout.getInstance().stage.stageWidth;
+        // this.desc.text = DataManager.getInstance().gameVO.gameIntro;
+        this.gameBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+        this.linkBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLink, this);
+    };
+    GameInfoVGameNoInAppViewiew.prototype.onClose = function (event) {
+        _super.prototype.hide.call(this);
+        if (!GlobalData.isNotFirstLogin) {
+            GlobalData.isNotFirstLogin = true;
+            ModuleManager.getInstance().openModule("GameInfoView");
         }
-        GameInfoVGameNoInAppViewiew.prototype.childrenCreated = function () {
-            _super.prototype.childrenCreated.call(this);
-            this.verticalCenter = this.horizontalCenter = 0;
-            // this.width = Layout.getInstance().stage.stageWidth;
-            // this.desc.text = DataManager.getInstance().gameVO.gameIntro;
-            this.gameBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
-            this.linkBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLink, this);
-        };
-        GameInfoVGameNoInAppViewiew.prototype.onClose = function (event) {
-            _super.prototype.hide.call(this);
-            // if(!GlobalData.isFirstLog)
-            // {
-            //     GlobalData.isFirstLog = true;
-            //     ModuleManager.getInstance().openModule("GameInfoView");
-            // }
-        };
-        GameInfoVGameNoInAppViewiew.prototype.onLink = function (event) {
-            window.open("http://hnly.chinashadt.com:8010/syncott/Modile/Detailed/download/index.html");
-        };
-        return GameInfoVGameNoInAppViewiew;
-    }(BaseView));
-    Views.GameInfoVGameNoInAppViewiew = GameInfoVGameNoInAppViewiew;
-    __reflect(GameInfoVGameNoInAppViewiew.prototype, "Views.GameInfoVGameNoInAppViewiew");
-})(Views || (Views = {}));
+    };
+    GameInfoVGameNoInAppViewiew.prototype.onLink = function (event) {
+        window.open(GameConfig.downloadUrl);
+        // window.open("http://hnly.chinashadt.com:8010/syncott/Modile/Detailed/download/index.html");
+    };
+    return GameInfoVGameNoInAppViewiew;
+}(component.BaseView));
+__reflect(GameInfoVGameNoInAppViewiew.prototype, "GameInfoVGameNoInAppViewiew");

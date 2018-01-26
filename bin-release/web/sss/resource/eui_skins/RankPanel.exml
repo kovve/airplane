@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="RankPanelSkin" width="720" height="1280" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="160a035ebee" ></w:Config>
+	<e:Image source="GameBG_jpg" x="0" y="0"/>
+    <e:Scroller id="scroller" height="80%" width="670" anchorOffsetX="0" anchorOffsetY="0" top="164" left="42" right="8">
+		<e:List id="mylist" anchorOffsetY="0" height="1085" x="89" y="-4" anchorOffsetX="0" width="680" locked="true">
+			<e:layout> 
+				<e:VerticalLayout/>
+			</e:layout>
+		</e:List>
+
+		<e:Skin>
+			<e:VScrollBar id="verticalScrollBar" width="8" minHeight="100%" height="100%" right="0">
+            <e:Skin>
+					<e:Image id="thumb" width="0" source="" />
+				</e:Skin>
+			</e:VScrollBar>
+		</e:Skin>
+	</e:Scroller>
+	<e:Image source="titleKuang_png" x="192.05" y="48.16"/>
+	<e:Button id="nationBtn" name = "nationBtn" label="" x="377.12" y="77.16">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="nationRnak_png" source.down="nation_2_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="localBtn" name = "localBtn" label="" x="247.12" y="75.16" enabled="true">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="local_2_png" source.down="localRank_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="backBtn" source="rankBack_png" left="62" top="64"/>
+</e:Skin>

@@ -11,30 +11,23 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Views;
-(function (Views) {
-    var BaseView = component.BaseView;
-    var GameConfig = config.GameConfig;
-    var GameInfoView = (function (_super) {
-        __extends(GameInfoView, _super);
-        function GameInfoView() {
-            var _this = _super.call(this) || this;
-            _this.skinName = "resource/eui_skins/GameInfo.exml";
-            return _this;
-        }
-        GameInfoView.prototype.childrenCreated = function () {
-            _super.prototype.childrenCreated.call(this);
-            this.verticalCenter = this.horizontalCenter = 0;
-            this.desc.text = GameConfig.gameIntro;
-            // this.goBackBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
-            this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
-        };
-        //关闭
-        GameInfoView.prototype.onClose = function (event) {
-            _super.prototype.hide.call(this);
-        };
-        return GameInfoView;
-    }(BaseView));
-    Views.GameInfoView = GameInfoView;
-    __reflect(GameInfoView.prototype, "Views.GameInfoView");
-})(Views || (Views = {}));
+var GameInfoView = (function (_super) {
+    __extends(GameInfoView, _super);
+    function GameInfoView() {
+        var _this = _super.call(this) || this;
+        _this.skinName = "resource/eui_skins/GameInfo.exml";
+        return _this;
+    }
+    GameInfoView.prototype.childrenCreated = function () {
+        _super.prototype.childrenCreated.call(this);
+        this.verticalCenter = this.horizontalCenter = 0;
+        // this.width = Layout.getInstance().stage.stageWidth;
+        this.desc.text = GameConfig.gameIntro;
+        this.goBackBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+    };
+    GameInfoView.prototype.onClose = function (event) {
+        _super.prototype.hide.call(this);
+    };
+    return GameInfoView;
+}(component.BaseView));
+__reflect(GameInfoView.prototype, "GameInfoView");

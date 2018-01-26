@@ -77,6 +77,13 @@ class Main extends eui.UILayer {
 
     private loadGameDataBack():void
     {
+        var vc: RES.VersionController = new RES.VersionController();
+
+        vc.getVirtualUrl = function (url: string): string {
+            return url + '?v=' + GlobalData.version;
+        }
+        RES.registerVersionController(vc);
+
         EventManager.removeEventListener(Events.CommonEvent.GET_INFO_SUCESS,this.loadGameDataBack,this)
         document.title = GameConfig.appName || "2048小游戏";
         // initialize the Resource loading library
@@ -164,9 +171,11 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected startCreateScene(): void {
+
         SoundManager.getIns().addItem("bgm_mp3",null,true);
         SoundManager.getIns().play("bgm_mp3",0,0);
         Manager.UIManager.getInstance().startGame();
         Manager.ModuleManager.getInstance().openModule("fighter.GameContainer");
+
     }
 }

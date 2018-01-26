@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="GameInfoSkin" width="640" height="680" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="160a162cf95"/>
+	<e:Image source="ranktitle_png" x="-13" y="-20"/>
+	<e:Label id="titleText" text="游戏说明" x="199" y="107" size="60" fontFamily="SimHei" bold="true"/>
+	<e:Image id="goBackBtn" source="backGame_png" y="522" x="185"/>
+	<e:Label id="desc" text="点击屏幕，红色的时钟会发射子弹射击其他时钟，被击中的时钟会代替红色时钟，并会增加分数，注意红色时钟的方向哦！" size="36" anchorOffsetY="0" height="330" anchorOffsetX="0" width="466" bold="true" fontFamily="SimHei" textColor="0x46b7e6" x="89" y="180" textAlign="center" verticalAlign="middle" lineSpacing="20"/>
+</e:Skin>

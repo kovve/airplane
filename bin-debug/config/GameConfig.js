@@ -18,12 +18,14 @@ var config;
             this.bgImage = obj['bgImage'];
             this.adSlogan = obj['adSlogan'];
             this.appExplain = obj['appExplain'];
+            this.awardExplain = obj['awardExplain'];
             this.gameIntro = obj['gameIntro'];
             this.startTime = obj['startTime'];
             this.endTime = obj['endTime'];
             this.thumb = obj['thumb'];
             this.beginMessage = obj['beginMessage'];
             this.endMessage = obj['endMessage'];
+            this.downloadUrl = obj["downloadUrl"];
             this.setGameContend(obj['blockContent']);
         };
         GameConfig.setGameContend = function (obj) {
@@ -36,6 +38,7 @@ var config;
             this.hitHurt = parseInt(obj['hitHurt']) || 12;
         };
         GameConfig.gameId = 3; //小游戏固定ID  每个小游戏拥有独有ID不可变
+        GameConfig.noInAppNotic = "下载并登录官方APP参加趣味游戏，可参与好友排行，还有丰厚奖励等你拿哦！";
         return GameConfig;
     }());
     config.GameConfig = GameConfig;

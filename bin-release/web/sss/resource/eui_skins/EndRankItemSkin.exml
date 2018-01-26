@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="EndRankItemSkin" width="198" height="253" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="160d9991c56" ></w:Config>
+	<e:Image id="bg" source="rankchose_png" top="0" right="0" left="0" bottom="0"/>
+	<e:Label id="rank" text="30" x="3" y="19" size="30" fontFamily="SimHei" textColor="0xDDDDDE" italic="true" bold="true" textAlign="center" anchorOffsetX="0" width="193"/>
+	<e:Label id="nameText" text="srwe巨盾footMan21212" x="1" y="170" size="20" fontFamily="SimHei" textColor="0xDDDDDE" bold="true" anchorOffsetX="0" width="195" textAlign="center" verticalAlign="middle" multiline="false"/>
+	<e:Image id="userPic" width="80" height="80" x="59" y="65" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:BitmapLabel id="score" width="383" height="62" x="3" y="212" anchorOffsetX="0" anchorOffsetY="0" font="ziti_fnt" text="40" scaleX="0.5" scaleY="0.5" letterSpacing="3" textAlign="center"/>
+</e:Skin>

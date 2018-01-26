@@ -5,6 +5,13 @@
     "parentPath": ""
   },
   "global": {
-    "globalAutoLayerMarkEnable": false
+    "globalAutoLayerMarkEnable": true
+  },
+  "160a035ebee": {
+    "backgroundType": "user",
+    "useBgImage": true,
+    "useBgColor": false,
+    "backgroundImage": "C:\\Users\\Administrator\\Desktop\\qie\\排行榜.jpg",
+    "backgroundAlpha": "65"
   }
 }

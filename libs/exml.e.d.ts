@@ -24,5 +24,13 @@ declare class UninAppNoticSkin extends eui.Skin{
 }
 declare class bloodProcessSkin extends eui.Skin{
 }
+declare module skins.button{
+	class NewGame extends eui.Skin{
+	}
+}
+declare class tabBtnSkin extends eui.Skin{
+}
+declare class tabBtn2Skin extends eui.Skin{
+}
 declare class startButtonSkin extends eui.Skin{
 }

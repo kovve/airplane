@@ -1,37 +1,58 @@
-module Views {
+class GameRewardsView extends component.BaseView {
+    // private gameBtn:eui.Button;
+    private okBtn:eui.Button;
+	private desc:eui.Label;
+	private title:eui.Image;
+	private linkBtn:eui.Button;
+	private gameBtn:eui.Button;//立即试玩
+	private initData:{desc:string,titleUrl:string,showBtn:boolean};//{desc:"",titleUrl:""}
 
-    import BaseView = component.BaseView;
+	public constructor() {
+        super();
+        this.skinName = "resource/eui_skins/RewardsSkin.exml";
+    }
 
-    export class GameRewardsView extends BaseView {
-        // private gameBtn:eui.Button;
-        private okBtn: eui.Button;
-        private desc: eui.Label;
+    public init(data: {desc:string,titleUrl:string,showBtn:boolean} = null): void {
+        this.initData = data;
+    }
+    protected childrenCreated(): void {
+        super.childrenCreated();
+        this.verticalCenter = this.horizontalCenter = 0;
+        this.desc.text = this.initData.desc;
+        this.title.source = this.initData.titleUrl;
 
-        public constructor() {
-            super();
-            this.skinName = "resource/eui_skins/RewardsSkin.exml";
+
+        this.okBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+        // this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+		// this.linkBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLink, this);
+
+        this.gameBtn.visible = this.initData.showBtn;
+        this.linkBtn.visible = this.initData.showBtn;
+        if(this.initData.showBtn)
+        {
+            this.gameBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.gameStart, this);
+            this.linkBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLink, this);
         }
+    }
 
-        protected childrenCreated(): void {
-            super.childrenCreated();
-            this.verticalCenter = this.horizontalCenter = 0;
-            // this.width = Layout.getInstance().stage.stageWidth;
-            this.desc.text = `    周榜第一名，可获得价值五百元的新年大礼包一份，奖品由浏阳广播电视台提供。
-				周榜第二名，可获得价值三百元的新年礼包一份，奖品由千城智联（上海）网络科技有限公司提供。 
-				周榜第三名，可获得价值一百元的新年奖券一份，奖品由浏阳食品公司提供。
-				
-				通关用户将有机会获得最高一千元现金红包奖励。
-				周榜奖励会在每周日的20:00进行统计，获奖用户可凭借帐号排名，前往浏阳广播电视台进行兑换。
-				本活动排名以“掌上浏阳”客户端排位为准。
-				本次活动最终解释权归浏阳广播电视台所有。`;
-
-            this.okBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
-            // this.linkBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLink, this);
+    private onClose (event: egret.TouchEvent):void
+    {
+        super.hide();
+        if(this.initData.showBtn)
+        {
+            ModuleManager.getInstance().openModule("GameStartView");
         }
+    }
 
-        private onClose(event: egret.TouchEvent): void {
-            super.hide();
+    private onLink (event: egret.TouchEvent):void
+    {
+        window.open(GameConfig.downloadUrl);
+        // window.open("http://hnly.chinashadt.com:8010/syncott/Modile/Detailed/download/index.html");
+    }
 
-        }
+    private gameStart (event: egret.TouchEvent):void
+    {
+        super.hide();
+        ModuleManager.getInstance().openModule("GameStartView");
     }
 }

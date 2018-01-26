@@ -1,31 +1,25 @@
-module Views {
+class GameInfoView extends component.BaseView {
+    private desc:eui.Label;
+    private goBackBtn:eui.Image;
 
-    import BaseView = component.BaseView;
-    import GameConfig = config.GameConfig;
+	public constructor() {
+        super();
+        this.skinName = "resource/eui_skins/GameInfo.exml";
+    }
 
-    export class GameInfoView extends BaseView {
-        private desc: eui.Label;
-        private goBackBtn: eui.Image;
+    protected childrenCreated(): void {
+        super.childrenCreated();
+        this.verticalCenter = this.horizontalCenter = 0;
+         // this.width = Layout.getInstance().stage.stageWidth;
+        this.desc.text = GameConfig.gameIntro;
 
-        public constructor() {
-            super();
-            this.skinName = "resource/eui_skins/GameInfo.exml";
-        }
+        this.goBackBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+    }
 
-        protected childrenCreated(): void {
-            super.childrenCreated();
-            this.verticalCenter = this.horizontalCenter = 0;
-            this.desc.text = GameConfig.gameIntro;
-
-            // this.goBackBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
-            this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
-        }
-
-        //关闭
-        private onClose(event: egret.TouchEvent): void {
-            super.hide();
-
-        }
+    private onClose (event: egret.TouchEvent):void
+    {
+        super.hide();
 
     }
+
 }

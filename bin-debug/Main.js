@@ -81,6 +81,11 @@ var Main = (function (_super) {
         HttpCommand.getInstance().getGameConfig(2);
     };
     Main.prototype.loadGameDataBack = function () {
+        var vc = new RES.VersionController();
+        vc.getVirtualUrl = function (url) {
+            return url + '?v=' + GlobalData.version;
+        };
+        RES.registerVersionController(vc);
         EventManager.removeEventListener(Events.CommonEvent.GET_INFO_SUCESS, this.loadGameDataBack, this);
         document.title = GameConfig.appName || "2048小游戏";
         // initialize the Resource loading library
