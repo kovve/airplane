@@ -36,12 +36,12 @@ var fighter;
                 _this.addChild(_this._dragDisplay);
             }
             //测试代码
-            /*var sp:egret.Sprite = new egret.Sprite();
-            sp.graphics.beginFill(0,0.5);
-            var rect = utils.GameUtil.createSelfBound(this,0.6);
-            sp.graphics.drawRect(rect.x,rect.y,rect.width,rect.height);
-            sp.graphics.endFill();
-            this.addChild(sp);*/
+            /* var sp:egret.Sprite = new egret.Sprite();
+             sp.graphics.beginFill(0,0.5);
+             var rect = utils.GameUtil.createSelfBound(this,0.6);
+             sp.graphics.drawRect(rect.x,rect.y,rect.width,rect.height);
+             sp.graphics.endFill();
+             this.addChild(sp);*/
             _this.addBloodProcess();
             _this.fireTimer = new egret.Timer(fireDelay);
             _this.fireTimer.addEventListener(egret.TimerEvent.TIMER, _this.createBullet, _this);

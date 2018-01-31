@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<e:Skin class="skins.button.NewGame" states="up,down,disabled" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" width="220" height="70">
-    <e:Rect includeIn="down" left="0" right="0" top="0" bottom="0" fillColor="0xA38468" ellipseWidth="18" ellipseHeight="18"/>
-    <e:Rect includeIn="disabled" left="0" right="0" top="0" bottom="0" fillColor="0xcccccc" ellipseWidth="18" ellipseHeight="18"/>
-    <e:Rect includeIn="up" left="0" right="1" top="0" bottom="-2" ellipseWidth="18" ellipseHeight="18" fillColor="0xa52f0b" anchorOffsetX="0"/>
-    <e:Label id="labelDisplay" top="12" bottom="12" left="12" right="12"
-             size="24"
-             textColor="0xffffff" verticalAlign="middle" textAlign="center" text="Button" size.disabled="36" size.up="36" size.down="36" bold.disabled="true" bold.down="true" bold.up="true" fontFamily.up="SimHei"/>
-</e:Skin>

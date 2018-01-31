@@ -169,6 +169,7 @@ var Main = (function (_super) {
      * Create scene interface
      */
     Main.prototype.startCreateScene = function () {
+        window["hideProgress"]();
         SoundManager.getIns().addItem("bgm_mp3", null, true);
         SoundManager.getIns().play("bgm_mp3", 0, 0);
         Manager.UIManager.getInstance().startGame();

@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>飞机大作战</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="true" />
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
+    <style>
+        html, body {
+            -ms-touch-action: none;
+            background: #f0f0f0;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        div, canvas {
+            display: block;
+            padding: 0;
+            border: 0;
+        }
+
+
+        #bgImg {
+            position:absolute;
+            width:100%;
+            height: 100%;
+        }
+
+        #warnImg {
+            -webkit-transform: translateX(-50%);
+            -moz-transform:translateX(-50%);
+            transform: translateX(-50%);
+            position:absolute;
+            display: none;
+            bottom:0;
+            left:50%
+        }
+
+        #loadTip {
+            margin-top: 12px;
+            text-align: center;
+            color: white;
+            border-radius:5px;
+            background-color: rgba(0,0,0,0.2);
+            filter: glow(color=#000,strength=3);
+            -webkit-text-shadow:#000 1px 0 0,#000 0 1px 0, #000 -1px 0 0,#000 0 -1px 0;
+            -moz-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+            text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+        }
+
+        #progressTxt {
+            position:relative;
+            line-height:21px;
+            text-align: center;
+            color: white;
+            filter: glow(color=#000,strength=3);
+            -webkit-text-shadow:#000 1px 0 0,#000 0 1px 0, #000 -1px 0 0,#000 0 -1px 0;
+            -moz-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+            text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<script>
+    var stageWidth = 720;
+    var stageHeight = 1280;
+    var displayWidth = window.innerWidth;
+    var displayHeight = window.innerHeight;
+    var scaleX = (displayWidth / stageWidth) || 0;
+    var scaleY = (displayHeight / stageHeight) || 0;
+    var scale = Math.min(scaleX, scaleY);
+    scale = Math.min(1, scale);
+    var scaleModel = "showAll";
+    var orientation = "auto";
+    var isMobile = false;
+    var agentList = ["iphone", "android", "windows phone"];
+    var agent = navigator.userAgent.toLocaleLowerCase();
+    var realW = stageWidth;
+    var realH = stageHeight;
+    var displayWidth1 = displayWidth;
+    var displayHeight1 = displayHeight;
+    if (scaleX > scaleY) {
+        displayWidth1 = Math.ceil(stageWidth * scaleY);
+    } else {
+        displayHeight1 = Math.ceil(stageHeight * scaleX);
+    }
+    for (var i = 0; i < agentList.length; i++) {
+        if (agent.indexOf(agentList[i]) >= 0) {
+            scaleModel = "fixedWidth";
+            orientation = "portrait";
+            isMobile = true;
+            realW = 720;
+            break;
+        }
+    }
+
+    var divStr = '<div style="margin: auto;width: 100%;height: 100%;" class="egret-player" ' +
+        'data-entry-class="Main" ' +
+        'data-orientation="auto" ' +
+        'data-scale-mode="{1}" ' +
+        'data-resolution-mode="retina" ' +
+        'data-frame-rate="30" ' +
+        'data-content-width="{2}" ' +
+        'data-content-height="{3}" ' +
+        'data-show-paint-rect="true" ' +
+        'data-multi-fingered="2" ' +
+        'data-show-fps="false" data-show-log="false" ' +
+        'data-log-filter="" data-show-fps-style="x:0,y:0,size:12,textColor:0x00c200,bgAlpha:0.5"> ' +
+        '</div>';
+    divStr = divStr.replace("{0}", orientation);
+    divStr = divStr.replace("{1}", scaleModel);
+    divStr = divStr.replace("{2}", realW);
+    divStr = divStr.replace("{3}", realH);
+    document.write(divStr);
+
+    var progressWidth = 360;
+    var main_load_progress = 0;
+    if (isMobile) {
+        progressWidth = 264;
+        displayWidth = window.innerWidth;
+        displayHeight = window.innerHeight;
+    } else {
+        progressWidth = 360;
+        displayHeight = Math.min(displayHeight1, displayHeight);
+        displayWidth =  displayHeight * 720 / 1280;
+    }
+
+    function onImgLoadComplete(){
+        var loadDiv = document.getElementById("loadDiv");
+        loadDiv.style.width = (displayWidth) + "px";
+        loadDiv.style.height = (displayHeight) + "px";
+        loadDiv.style.left = Math.floor((window.innerWidth - displayWidth) / 2) + "px";
+        loadDiv.style.top = Math.floor((window.innerHeight - displayHeight) / 2) + "px";
+
+        var progressDiv = document.getElementById("progressDiv");
+        if (progressDiv) {
+            progressDiv.style.width = progressWidth + "px";
+            var progressBgImg = document.getElementById("progressBgImg");
+            if (progressBgImg) {
+                progressBgImg.style.width = progressWidth + "px";
+            }
+
+            var progressBarImg = document.getElementById("progressBarImg");
+            if (progressBarImg) {
+                progressBarImg.style.width = progressWidth + "px";
+            }
+            progressDiv.style.left = (displayWidth - progressWidth) / 2 + "px";
+
+            progressDiv.style.bottom = (420 * scaleY)+ "px";
+        }
+        showProgress(10);
+    }
+
+    /**
+     * 显示进度条
+     * @param p
+     * @param t
+     */
+    function showProgress(p, t) {
+        if (p >= main_load_progress) {
+            p = Math.min(~~p, 100);
+            main_load_progress = p;
+
+            var progressBarImg = document.getElementById("progressBarImg");
+            var progressTxt = document.getElementById("progressTxt");
+            var loadTxt = document.getElementById("loadTip");
+            if (t) {
+                if (loadTxt) {
+                    loadTxt.innerHTML = t;
+                }
+            }
+            if (progressTxt) {
+                progressTxt.innerHTML = p + "%";
+            }
+            if (progressBarImg) {
+                var w = Math.floor(p / 100 * (progressWidth-10));
+                var h = 20;
+                progressBarImg.style.clip = 'rect(0 '+ w + 'px' + ' ' + h + 'px 0)';
+            }
+            if(p>=100)
+            {
+                // hideProgress();
+            }
+        }
+    }
+
+    /**
+     * 进入游戏时,关闭加载界面
+     */
+    function hideProgress() {
+        var loadDiv = document.getElementById("loadDiv");
+        if (loadDiv) {
+            loadDiv.style.display = "none";
+        }
+    }
+</script>
+
+<div id="loadDiv" style="position: fixed;">
+    <img id="bgImg" src="../web/bg_login.jpg" onload="onImgLoadComplete()"/>
+    <div id="progressDiv" style="position: absolute;">
+        <div id="groupDiv" style="position: relative;">
+            <img id="progressBgImg" src="../web/progress_bg.png" style="position: absolute;height: 21px;margin:0;">
+            <img id="progressBarImg" src="../web/progress_bar.png" style="position: absolute;height: 15px;left:6px;top:3px;margin:0;">
+            <div id="progressTxt">100%</div>
+        </div>
+        <div id="loadTip">正在加载文件</div>
+    </div>
+</div>
+<script>
+    var loadScript = function (list, callback) {
+        var loaded = 0;
+        var loadNext = function () {
+            loadSingleScript(list[loaded], function () {
+                loaded++;
+                if(main_load_progress<60)
+                {
+                    showProgress(main_load_progress + 1);
+
+                }
+                if (loaded >= list.length) {
+                    callback();
+
+                } else {
+                    loadNext();
+                }
+            })
+        };
+        loadNext();
+    };
+
+    var loadSingleScript = function (src, callback) {
+        var s = document.createElement('script');
+        s.async = false;
+        s.src = src;
+        s.addEventListener('load', function () {
+            s.parentNode.removeChild(s);
+            s.removeEventListener('load', arguments.callee, false);
+            callback();
+        }, false);
+        document.body.appendChild(s);
+    };
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'manifest.json?v=' + Math.random(), true);
+    xhr.addEventListener("load", function () {
+        var manifest = JSON.parse(xhr.response);
+        var list = manifest.initial.concat(manifest.game);
+        loadScript(list, function () {
+            egret.runEgret({ renderMode: "webgl", audioType: 2 });
+        });
+    });
+    xhr.send(null);
+
+    window.onerror=function(sMsg,sUrl,sLine) {
+        alert("error:" + sMsg);
+        return false;
+    };
+</script>
+</body>
+</html>

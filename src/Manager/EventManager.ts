@@ -34,8 +34,5 @@ module Manager
         {
             this.getInstance().dispatchEvent(event);
         }
-
-
-
     }
 }

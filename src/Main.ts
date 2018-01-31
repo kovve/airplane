@@ -136,6 +136,7 @@ class Main extends eui.UILayer {
     private createScene() {
         if (this.isThemeLoadEnd && this.isResourceLoadEnd) {
             this.startCreateScene();
+
         }
     }
     /**
@@ -172,10 +173,13 @@ class Main extends eui.UILayer {
      */
     protected startCreateScene(): void {
 
+        window["hideProgress"]();
         SoundManager.getIns().addItem("bgm_mp3",null,true);
         SoundManager.getIns().play("bgm_mp3",0,0);
         Manager.UIManager.getInstance().startGame();
         Manager.ModuleManager.getInstance().openModule("fighter.GameContainer");
+
+
 
     }
 }

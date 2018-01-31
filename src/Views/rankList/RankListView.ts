@@ -174,7 +174,19 @@ class RankListItemRenderer extends eui.ItemRenderer {
         }
         
         // 同一个域下可以请求
-        this.userPic.source = ""+this.data.userPic;
+        if(this.data.userPic.indexOf("nophoto")==-1)
+        {
+            this.userPic.source = ""+this.data.userPic;
+        }
+
+
+        var circle:egret.Shape = new egret.Shape();
+        circle.graphics.beginFill(0x0000ff);
+        circle.graphics.drawCircle(this.userPic.x+this.userPic.width/2,
+            this.userPic.y+this.userPic.height/2,this.userPic.height/2);
+        circle.graphics.endFill();
+        this.addChild(circle);
+        this.userPic.mask = circle;
 
         // this.userPic.source = "http://game.hslmnews.com/resource/assets/player.png";
     }

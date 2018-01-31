@@ -33,19 +33,37 @@ class LoadingUI extends egret.Sprite {
         super();
         this.createView();
     }
-
+    // private unloadLen:number;
+    private loadedLen:number;
+    //
     private textField:egret.TextField;
 
     private createView():void {
-        this.textField = new egret.TextField();
-        this.addChild(this.textField);
-        this.textField.y = 300;
-        this.textField.width = 480;
-        this.textField.height = 100;
-        this.textField.textAlign = "center";
+        // this.textField = new egret.TextField();
+        // this.addChild(this.textField);
+        // this.textField.y = 300;
+        // this.textField.width = 480;
+        // this.textField.height = 100;
+        // this.textField.textAlign = "center";
+        //
+        // window["hideProgress"]();
+        
+        // this.unloadLen = 100 - window["main_load_progress"];
+        this.loadedLen = window["main_load_progress"];
+
+
     }
 
     public setProgress(current:number, total:number):void {
-        this.textField.text = `Loading...${current}/${total}`;
+        // this.textField.text = `Loading...${current}/${total}`;
+
+        var addnum:number = Math.floor(current*((100- this.loadedLen)/total));
+
+        window["showProgress"](addnum+this.loadedLen);
+
+        // if(current>=total)
+        // {
+        //     window["hideProgress"]();
+        // }
     }
 }

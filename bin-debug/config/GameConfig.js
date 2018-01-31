@@ -38,7 +38,7 @@ var config;
             this.hitHurt = parseInt(obj['hitHurt']) || 12;
         };
         GameConfig.gameId = 3; //小游戏固定ID  每个小游戏拥有独有ID不可变
-        GameConfig.noInAppNotic = "下载并登录官方APP参加趣味游戏，可参与好友排行，还有丰厚奖励等你拿哦！";
+        GameConfig.noInAppNotic = "下载并登录官方APP参加趣味游戏，可参与好友排行， 还有丰厚奖励等你拿哦！";
         return GameConfig;
     }());
     config.GameConfig = GameConfig;

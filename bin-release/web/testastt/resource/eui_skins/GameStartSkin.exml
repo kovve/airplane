@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="GameStartSkinSkin" minWidth="360" minHeight="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
-	<e:Group id="mainGroup" left="0" right="0" bottom="0" top="0" width="720" height="1280">
-		<e:Image id="rewardBtn" source="awardBtn_png" x="235" y="816"/>
-		<e:Image id="infoBtn" source="infoBtn_png" x="235" y="666.33"/>
-		<e:Image id="rankBtn" source="rankBtn_png" x="235" y="516.67"/>
-		<e:Image id="startBtn" source="startGame_png" y="367" horizontalCenter="0"/>
-	</e:Group>
-</e:Skin>

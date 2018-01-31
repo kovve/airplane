@@ -15,7 +15,7 @@ module Model {
         public static isNotFirstLogin: boolean = false;
 
         // public static josnStr:string;
-        public static version: number = 201801251304;
+        public static version: number = 2018013001;
         //游戏得分
         public static score: number = 0;
         /*是否在App中玩这个游戏*/

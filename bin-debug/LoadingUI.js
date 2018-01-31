@@ -47,15 +47,25 @@ var LoadingUI = (function (_super) {
         return _this;
     }
     LoadingUI.prototype.createView = function () {
-        this.textField = new egret.TextField();
-        this.addChild(this.textField);
-        this.textField.y = 300;
-        this.textField.width = 480;
-        this.textField.height = 100;
-        this.textField.textAlign = "center";
+        // this.textField = new egret.TextField();
+        // this.addChild(this.textField);
+        // this.textField.y = 300;
+        // this.textField.width = 480;
+        // this.textField.height = 100;
+        // this.textField.textAlign = "center";
+        //
+        // window["hideProgress"]();
+        // this.unloadLen = 100 - window["main_load_progress"];
+        this.loadedLen = window["main_load_progress"];
     };
     LoadingUI.prototype.setProgress = function (current, total) {
-        this.textField.text = "Loading..." + current + "/" + total;
+        // this.textField.text = `Loading...${current}/${total}`;
+        var addnum = Math.floor(current * ((100 - this.loadedLen) / total));
+        window["showProgress"](addnum + this.loadedLen);
+        // if(current>=total)
+        // {
+        //     window["hideProgress"]();
+        // }
     };
     return LoadingUI;
 }(egret.Sprite));

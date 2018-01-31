@@ -1,248 +1,260 @@
 {
-	"groups":[{
-			"keys":"b1_png,b2_png,bg_jpg,bloodBar_png,bloodBarBg_png,boss_png,btn_start_png,buff_blood_png,enemyBullet_png,f1_png,f2_png,hp_png,restart_png,bomb_mp3,readygo_mp3,bgm_mp3,bomb2_mp3,bgm2_mp3,readygo2_mp3,F_zhanshen20_ske_json,F_zhanshen20_tex_json,F_zhanshen20_tex_png,againBtn_png,closeBtn_png,localRank_png,local_2_png,nationRnak_png,nation_2_png,order1_png,order2_png,order3_png,rankbody_png,rankchose_png,select_png,titleInfo_png,unselect_png,ziti_fnt,awardBtn_png,beijing_png,closeBtn2_png,infoBtn_png,rankbg_png,rankBtn_png,startGame_png,titleAward_png,titleTips_png,zitiF_fnt,curSorce_png",
-			"name":"preload"
-		}],
-	"resources":[
+	"groups": [
 		{
-			"name":"b1_png",
-			"type":"image",
-			"url":"assets/b1.png"
+			"keys": "b1_png,b2_png,bg_jpg,bloodBar_png,bloodBarBg_png,f2_png,bomb_mp3,readygo_mp3,bgm_mp3,bomb2_mp3,bgm2_mp3,readygo2_mp3,F_zhanshen20_ske_json,F_zhanshen20_tex_json,F_zhanshen20_tex_png,againBtn_png,closeBtn_png,localRank_png,local_2_png,nationRnak_png,nation_2_png,order1_png,order2_png,order3_png,rankbody_png,rankchose_png,select_png,titleInfo_png,unselect_png,ziti_fnt,awardBtn_png,beijing_png,closeBtn2_png,infoBtn_png,rankbg_png,rankBtn_png,startGame_png,titleAward_png,titleTips_png,zitiF_fnt,curSorce_png,gameover_mp3,nophoto_png,loading_cover_png,loading_progress_png,loading_progressBg_png,loading_word_png,progress_bar_png,progress_bg_png,bg_login_jpg",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"name": "b1_png",
+			"type": "image",
+			"url": "assets/b1.png"
 		},
 		{
-			"name":"b2_png",
-			"type":"image",
-			"url":"assets/b2.png"
+			"name": "b2_png",
+			"type": "image",
+			"url": "assets/b2.png"
 		},
 		{
-			"name":"bg_jpg",
-			"type":"image",
-			"url":"assets/bg.jpg"
+			"name": "bg_jpg",
+			"type": "image",
+			"url": "assets/bg.jpg"
 		},
 		{
-			"name":"bloodBar_png",
-			"type":"image",
-			"url":"assets/bloodBar.png"
+			"name": "bloodBar_png",
+			"type": "image",
+			"url": "assets/bloodBar.png"
 		},
 		{
-			"name":"bloodBarBg_png",
-			"type":"image",
-			"url":"assets/bloodBarBg.png"
+			"name": "bloodBarBg_png",
+			"type": "image",
+			"url": "assets/bloodBarBg.png"
 		},
 		{
-			"name":"boss_png",
-			"type":"image",
-			"url":"assets/boss.png"
+			"name": "f2_png",
+			"type": "image",
+			"url": "assets/f2.png"
 		},
 		{
-			"name":"btn_start_png",
-			"type":"image",
-			"url":"assets/btn_start.png"
+			"name": "bomb_mp3",
+			"type": "sound",
+			"url": "assets/sound/bomb.mp3"
 		},
 		{
-			"name":"buff_blood_png",
-			"type":"image",
-			"url":"assets/buff_blood.png"
+			"name": "readygo_mp3",
+			"type": "sound",
+			"url": "assets/sound/readygo.mp3"
 		},
 		{
-			"name":"enemyBullet_png",
-			"type":"image",
-			"url":"assets/enemyBullet.png"
+			"name": "bgm_mp3",
+			"type": "sound",
+			"url": "assets/sound/bgm.mp3"
 		},
 		{
-			"name":"f1_png",
-			"type":"image",
-			"url":"assets/f1.png"
+			"name": "bomb2_mp3",
+			"type": "sound",
+			"url": "assets/sound/bomb.mp3"
 		},
 		{
-			"name":"f2_png",
-			"type":"image",
-			"url":"assets/f2.png"
+			"name": "bgm2_mp3",
+			"type": "sound",
+			"url": "assets/sound/bgm.mp3"
 		},
 		{
-			"name":"hp_png",
-			"type":"image",
-			"url":"assets/hp.png"
+			"name": "readygo2_mp3",
+			"type": "sound",
+			"url": "assets/sound/readygo.mp3"
 		},
 		{
-			"name":"restart_png",
-			"type":"image",
-			"url":"assets/restart.png"
+			"name": "F_zhanshen20_ske_json",
+			"type": "json",
+			"url": "assets/F_zhanshen20/F_zhanshen20_ske.json"
 		},
 		{
-			"name":"bomb_mp3",
-			"type":"sound",
-			"url":"assets/sound/bomb.mp3"
+			"name": "F_zhanshen20_tex_json",
+			"type": "json",
+			"url": "assets/F_zhanshen20/F_zhanshen20_tex.json"
 		},
 		{
-			"name":"readygo_mp3",
-			"type":"sound",
-			"url":"assets/sound/readygo.mp3"
+			"name": "F_zhanshen20_tex_png",
+			"type": "image",
+			"url": "assets/F_zhanshen20/F_zhanshen20_tex.png"
 		},
 		{
-			"name":"bgm_mp3",
-			"type":"sound",
-			"url":"assets/sound/bgm.mp3"
+			"name": "againBtn_png",
+			"type": "image",
+			"url": "assets/ui/againBtn.png"
 		},
 		{
-			"name":"bomb2_mp3",
-			"type":"sound",
-			"url":"assets/sound/bomb.mp3"
+			"name": "closeBtn_png",
+			"type": "image",
+			"url": "assets/ui/closeBtn.png"
 		},
 		{
-			"name":"bgm2_mp3",
-			"type":"sound",
-			"url":"assets/sound/bgm.mp3"
+			"name": "localRank_png",
+			"type": "image",
+			"url": "assets/ui/localRank.png"
 		},
 		{
-			"name":"readygo2_mp3",
-			"type":"sound",
-			"url":"assets/sound/readygo.mp3"
+			"name": "local_2_png",
+			"type": "image",
+			"url": "assets/ui/local_2.png"
 		},
 		{
-			"name":"F_zhanshen20_ske_json",
-			"type":"json",
-			"url":"assets/F_zhanshen20/F_zhanshen20_ske.json"
+			"name": "nationRnak_png",
+			"type": "image",
+			"url": "assets/ui/nationRnak.png"
 		},
 		{
-			"name":"F_zhanshen20_tex_json",
-			"type":"json",
-			"url":"assets/F_zhanshen20/F_zhanshen20_tex.json"
+			"name": "nation_2_png",
+			"type": "image",
+			"url": "assets/ui/nation_2.png"
 		},
 		{
-			"name":"F_zhanshen20_tex_png",
-			"type":"image",
-			"url":"assets/F_zhanshen20/F_zhanshen20_tex.png"
+			"name": "order1_png",
+			"type": "image",
+			"url": "assets/ui/order1.png"
 		},
 		{
-			"name":"againBtn_png",
-			"type":"image",
-			"url":"assets/ui/againBtn.png"
+			"name": "order2_png",
+			"type": "image",
+			"url": "assets/ui/order2.png"
 		},
 		{
-			"name":"closeBtn_png",
-			"type":"image",
-			"url":"assets/ui/closeBtn.png"
+			"name": "order3_png",
+			"type": "image",
+			"url": "assets/ui/order3.png"
 		},
 		{
-			"name":"localRank_png",
-			"type":"image",
-			"url":"assets/ui/localRank.png"
+			"name": "rankbody_png",
+			"type": "image",
+			"url": "assets/ui/rankbody.png"
 		},
 		{
-			"name":"local_2_png",
-			"type":"image",
-			"url":"assets/ui/local_2.png"
+			"name": "rankchose_png",
+			"type": "image",
+			"url": "assets/ui/rankchose.png"
 		},
 		{
-			"name":"nationRnak_png",
-			"type":"image",
-			"url":"assets/ui/nationRnak.png"
+			"name": "select_png",
+			"type": "image",
+			"url": "assets/ui/select.png"
 		},
 		{
-			"name":"nation_2_png",
-			"type":"image",
-			"url":"assets/ui/nation_2.png"
+			"name": "titleInfo_png",
+			"type": "image",
+			"url": "assets/ui/titleInfo.png"
 		},
 		{
-			"name":"order1_png",
-			"type":"image",
-			"url":"assets/ui/order1.png"
+			"name": "unselect_png",
+			"type": "image",
+			"url": "assets/ui/unselect.png"
 		},
 		{
-			"name":"order2_png",
-			"type":"image",
-			"url":"assets/ui/order2.png"
+			"name": "ziti_fnt",
+			"type": "font",
+			"url": "assets/ui/ziti.fnt"
 		},
 		{
-			"name":"order3_png",
-			"type":"image",
-			"url":"assets/ui/order3.png"
+			"name": "awardBtn_png",
+			"type": "image",
+			"url": "assets/ui/awardBtn.png"
 		},
 		{
-			"name":"rankbody_png",
-			"type":"image",
-			"url":"assets/ui/rankbody.png"
+			"name": "beijing_png",
+			"type": "image",
+			"url": "assets/ui/beijing.png"
 		},
 		{
-			"name":"rankchose_png",
-			"type":"image",
-			"url":"assets/ui/rankchose.png"
+			"name": "closeBtn2_png",
+			"type": "image",
+			"url": "assets/ui/closeBtn2.png"
 		},
 		{
-			"name":"select_png",
-			"type":"image",
-			"url":"assets/ui/select.png"
+			"name": "infoBtn_png",
+			"type": "image",
+			"url": "assets/ui/infoBtn.png"
 		},
 		{
-			"name":"titleInfo_png",
-			"type":"image",
-			"url":"assets/ui/titleInfo.png"
+			"name": "rankbg_png",
+			"type": "image",
+			"url": "assets/ui/rankbg.png"
 		},
 		{
-			"name":"unselect_png",
-			"type":"image",
-			"url":"assets/ui/unselect.png"
+			"name": "rankBtn_png",
+			"type": "image",
+			"url": "assets/ui/rankBtn.png"
 		},
 		{
-			"name":"ziti_fnt",
-			"type":"font",
-			"url":"assets/ui/ziti.fnt"
+			"name": "startGame_png",
+			"type": "image",
+			"url": "assets/ui/startGame.png"
 		},
 		{
-			"name":"awardBtn_png",
-			"type":"image",
-			"url":"assets/ui/awardBtn.png"
+			"name": "titleAward_png",
+			"type": "image",
+			"url": "assets/ui/titleAward.png"
 		},
 		{
-			"name":"beijing_png",
-			"type":"image",
-			"url":"assets/ui/beijing.png"
+			"name": "titleTips_png",
+			"type": "image",
+			"url": "assets/ui/titleTips.png"
 		},
 		{
-			"name":"closeBtn2_png",
-			"type":"image",
-			"url":"assets/ui/closeBtn2.png"
+			"name": "zitiF_fnt",
+			"type": "font",
+			"url": "assets/ui/zitiF.fnt"
 		},
 		{
-			"name":"infoBtn_png",
-			"type":"image",
-			"url":"assets/ui/infoBtn.png"
+			"name": "curSorce_png",
+			"type": "image",
+			"url": "assets/curSorce.png"
 		},
 		{
-			"name":"rankbg_png",
-			"type":"image",
-			"url":"assets/ui/rankbg.png"
+			"name": "gameover_mp3",
+			"type": "sound",
+			"url": "assets/sound/gameover.mp3"
 		},
 		{
-			"name":"rankBtn_png",
-			"type":"image",
-			"url":"assets/ui/rankBtn.png"
+			"name": "nophoto_png",
+			"type": "image",
+			"url": "assets/nophoto.png"
 		},
 		{
-			"name":"startGame_png",
-			"type":"image",
-			"url":"assets/ui/startGame.png"
+			"name": "loading_cover_png",
+			"type": "image",
+			"url": "assets/preload/loading_cover.png"
 		},
 		{
-			"name":"titleAward_png",
-			"type":"image",
-			"url":"assets/ui/titleAward.png"
+			"name": "loading_progress_png",
+			"type": "image",
+			"url": "assets/preload/loading_progress.png"
 		},
 		{
-			"name":"titleTips_png",
-			"type":"image",
-			"url":"assets/ui/titleTips.png"
+			"name": "loading_progressBg_png",
+			"type": "image",
+			"url": "assets/preload/loading_progressBg.png"
 		},
 		{
-			"name":"zitiF_fnt",
-			"type":"font",
-			"url":"assets/ui/zitiF.fnt"
+			"name": "loading_word_png",
+			"type": "image",
+			"url": "assets/preload/loading_word.png"
 		},
 		{
-			"name":"curSorce_png",
-			"type":"image",
-			"url":"assets/curSorce.png"
+			"name": "progress_bar_png",
+			"type": "image",
+			"url": "web/progress_bar.png"
+		},
+		{
+			"name": "progress_bg_png",
+			"type": "image",
+			"url": "web/progress_bg.png"
+		},
+		{
+			"name": "bg_login_jpg",
+			"type": "image",
+			"url": "web/bg_login.jpg"
 		}
 	]
 }

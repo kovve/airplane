@@ -134,6 +134,7 @@ var fighter;
             this.touchEnabled = true;
             this.addEventListener(egret.Event.ENTER_FRAME, this.gameViewUpdate, this);
             this.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.touchHandler, this);
+            this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.touchHandler, this);
             this.myFighter.x = (this.stageW - this.myFighter.width) / 2;
             SoundManager.getIns().play("readygo_mp3");
             egret.setTimeout(function () {
@@ -145,13 +146,25 @@ var fighter;
             this.enemyFightersTimer.addEventListener(egret.TimerEvent.TIMER, this.createEnemyFighter, this);
             this.enemyFightersTimer.start();
         };
-        /**响应Touch*/
         GameContainer.prototype.touchHandler = function (evt) {
             if (evt.type == egret.TouchEvent.TOUCH_MOVE) {
                 var tx = evt.localX;
-                tx = Math.max(0, tx);
-                tx = Math.min(this.stageW - this.myFighter.width, tx);
-                this.myFighter.x = tx;
+                var ditance = tx - this.lastTx;
+                this.lastTx = tx;
+                // tx = Math.max(0,tx);
+                // tx = Math.min(this.stageW-this.myFighter.width,tx);
+                if (this.myFighter.x + ditance > (this.myFighter.width / 2 * -1) && this.myFighter.x + ditance < this.stageW - this.myFighter.width / 2) {
+                    this.myFighter.x = this.myFighter.x + ditance;
+                }
+                else if (this.myFighter.x + ditance <= 0) {
+                    this.myFighter.x = this.myFighter.width / 2 * -1;
+                }
+                else {
+                    this.myFighter.x = this.stageW - this.myFighter.width / 2;
+                }
+            }
+            else if (evt.type == egret.TouchEvent.TOUCH_BEGIN) {
+                this.lastTx = evt.localX;
             }
         };
         /**创建子弹(包括我的子弹和敌机的子弹)*/
@@ -352,6 +365,7 @@ var fighter;
             // this.scorePanel.x = (this.stageW-this.scorePanel.width)/2;
             // this.scorePanel.y = 100;
             // this.addChild(this.scorePanel);
+            SoundManager.getIns().play("gameover_mp3");
             GlobalData.score = this.myScore;
             ModuleManager.getInstance().openModule("GameEndView");
         };

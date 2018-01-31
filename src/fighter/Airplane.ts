@@ -77,7 +77,7 @@ module fighter
             }
 
             //测试代码
-            /*var sp:egret.Sprite = new egret.Sprite();
+           /* var sp:egret.Sprite = new egret.Sprite();
             sp.graphics.beginFill(0,0.5);
             var rect = utils.GameUtil.createSelfBound(this,0.6);
             sp.graphics.drawRect(rect.x,rect.y,rect.width,rect.height);

@@ -13,7 +13,7 @@ var Model;
         }
         GlobalData.isNotFirstLogin = false;
         // public static josnStr:string;
-        GlobalData.version = 201801251304;
+        GlobalData.version = 2018013001;
         //游戏得分
         GlobalData.score = 0;
         /*是否在App中玩这个游戏*/
