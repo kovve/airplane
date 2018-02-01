@@ -25,11 +25,9 @@ var GameRewardsView = (function (_super) {
     GameRewardsView.prototype.childrenCreated = function () {
         _super.prototype.childrenCreated.call(this);
         this.verticalCenter = this.horizontalCenter = 0;
-        this.desc.text = this.initData.desc;
+        this.desc.text = utils.StringUtil.formatStr(this.initData.desc);
         this.title.source = this.initData.titleUrl;
         this.okBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
-        // this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
-        // this.linkBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLink, this);
         this.gameBtn.visible = this.initData.showBtn;
         this.linkBtn.visible = this.initData.showBtn;
         if (this.initData.showBtn) {

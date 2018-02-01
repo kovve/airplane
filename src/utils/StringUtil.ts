@@ -1,5 +1,6 @@
 module utils {
     export class StringUtil {
+
         public constructor() {
         }
 
@@ -16,6 +17,16 @@ module utils {
 
             return _ba.readUTFBytes(_len) + "...";
 
+        }
+        /**
+         *
+         *转换成格式字符串
+         *_str中“|”表示换行
+         *
+         * **/
+        public static formatStr(_str:string):string
+        {
+            return _str.replace(/\|/g, '\r\t');
         }
     }
 }

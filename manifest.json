@@ -12,10 +12,10 @@
 	"game": [
 		"bin-debug/Model/GlobalData.js",
 		"bin-debug/Manager/ModuleManager.js",
+		"bin-debug/Manager/Layout.js",
 		"bin-debug/Manager/UIManager.js",
 		"bin-debug/config/GameConfig.js",
 		"bin-debug/Model/RankData.js",
-		"bin-debug/Manager/Layout.js",
 		"bin-debug/utils/ViewUtil.js",
 		"bin-debug/component/BaseView.js",
 		"bin-debug/Manager/EventManager.js",
@@ -26,7 +26,7 @@
 		"bin-debug/AssetAdapter.js",
 		"bin-debug/Main.js",
 		"bin-debug/Manager/SoundManager.js",
-		"bin-debug/Views/rankList/RankListView.js",
+		"bin-debug/LoadingUI.js",
 		"bin-debug/Events/CommonEvent.js",
 		"bin-debug/fighter/Airplane.js",
 		"bin-debug/fighter/BgMap.js",
@@ -41,6 +41,6 @@
 		"bin-debug/Views/GameRewardsView.js",
 		"bin-debug/Views/GameStartView.js",
 		"bin-debug/Views/rankList/EndRankItem.js",
-		"bin-debug/LoadingUI.js"
+		"bin-debug/Views/rankList/RankListView.js"
 	]
 }

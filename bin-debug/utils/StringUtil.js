@@ -14,6 +14,15 @@ var utils;
             _ba.position = 0;
             return _ba.readUTFBytes(_len) + "...";
         };
+        /**
+         *
+         *转换成格式字符串
+         *_str中“|”表示换行
+         *
+         * **/
+        StringUtil.formatStr = function (_str) {
+            return _str.replace(/\|/g, '\r\t');
+        };
         return StringUtil;
     }());
     utils.StringUtil = StringUtil;
